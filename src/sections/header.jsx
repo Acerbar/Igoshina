@@ -1,26 +1,47 @@
 import styled from "styled-components";
-import ButtonElem from "../conponents/button";
-import { useEffect, useState } from "react";
+import ButtonElem from "../components/button";
+import { useEffect, useState, useRef} from "react";
+import TelegramIcon from "../components/telegram";
 
 const Header = styled.header`
-    width: 100vw;
-    padding: 5px 19px;
+    position: ${({$fixed}) => ($fixed ? 'fixed' : 'relative')};
+    top: 0;
+    left: 0;
+    z-index: ${({$fixed}) => ($fixed ? '5' : '2')};
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: ${({$fixed}) => ($fixed ? '1px solid var(--borderGrey)' : '')};
+    background-color: ${({$fixed}) => ($fixed ? 'var(--backgroundColor)' : '')};
 
-    &_fixed{
-        position: fixed;
+    @media(width <= 960px){
+       padding: 30px 0;
+        
     }
 `;
+
+const HeaderInner = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`
 
 const Logo = styled.p`
     display: block;
     font-family: var(--font-family-2);
     font-weight: 500;
-    font-size: 20px;
+    font-size: clamp(16px, 1.5vw, 20px);
     color: var(--secondaryText);
+
+    @media(width <= 960px){
+        font-size: 20px;
+        
+    }
 `;
 const Nav = styled.nav`
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 1.4em;
 
     @media(width <= 960px){
@@ -29,30 +50,115 @@ const Nav = styled.nav`
 `;
 
 const NavItem = styled.a`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 7px;
+    display: block;
     font-family: var(--font-family-2);
-    font-size: 16px;
+    font-size: clamp(14px, 1.2vw, 16px);
     font-weight: 400;
     line-height: 1.5em;
     color: var(--secondaryText);
     text-wrap: nowrap;
 
     &:hover{
-        color: inherit;
+        color: var(--blackText);
     }
 `;
-
+const NavItemBurger = styled(NavItem)`
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5em;
+    margin: 7px 0;
+`
 const Triangle = styled.span`
 width: 0px;
 height: 0px;
+transition: transform 0.3s linear;
 border-style: solid;
 border-width: 8px 5px 0 5px;
 border-color: var(--secondaryText) transparent transparent transparent;
-transform: rotate(0deg);
 `;
+
+const Submenu = styled.div`
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, 20%);
+    padding: 1em;
+    border: 1px solid var(--borderGrey);
+    border-radius: 8px;
+    text-align: center;
+    background-color: var(--backgroundColor);
+    transition: all, .2s linear;
+
+    
+    &::before{
+        content: "";
+        position: absolute;
+        top: -17%;
+        left: 50%;
+        z-index: 2;
+        border: solid var(--borderGrey);
+        border-width: 0 1px 1px 0;
+        padding: 7px;
+        display: inline-block;
+        transform: rotate(-135deg) translate(0%, -50%);
+        -webkit-transform: rotate(-135deg) translate(0%, -50%);
+        background-color: var(--backgroundColor);
+    }
+    `;
+const SubmenuBurger = styled(Submenu)`
+display: none;
+position: relative;
+top: 0;
+left: 0;
+transform: translate(0, 0);
+text-align: left;
+padding: 0;
+background-color: #fff;
+border: none;
+
+&::before{
+    display: none;
+}
+`
+const SubmenuWrapper = styled.div`
+    position: relative;
+    vertical-align: top; 
+    cursor: pointer;
+    display: flex;
+    flex-direction: ${({$visible}) => ($visible ? "column" : "row")};
+    align-items: ${({$visible}) => ($visible ? "start" : "center")};
+    gap: ${({$visible}) => ($visible ? "0" : "7px")};
+    font-family: var(--font-family-2);
+    font-size: clamp(14px, 1.2vw, 16px);
+    font-weight: 400;
+    line-height: 1.5em;
+    color: var(--secondaryText);
+    text-wrap: nowrap;
+
+    &:hover{
+        color: var(--blackText);
+    }
+
+    
+    &:hover ${Triangle} {
+        transform: rotate(180deg);
+    }
+
+    &:hover ${Submenu} {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+        transform: translate(-50%, 0);
+    }
+    &:hover ${SubmenuBurger} {
+        display: block;
+        transform: translate(0, 0);
+    }
+`
 
 const BurgerMenu = styled.div`
     display: none;
@@ -62,27 +168,24 @@ const BurgerMenu = styled.div`
     }
 `;
 
-const Burger = styled.div`
-
-`;
-
 const BurgerIcon = styled.div`
     cursor: pointer;
     width: 24px;
     height: 24px;
     position: relative;
 `;
-
-const BurgerInner = styled.span`
+const BurgerSpan = styled.span`
     display: block;
     width: 100%;
-    height: 3px;
-    background-color: var(--blackText);
+    height: 2px;
+    background-color: ${({$visible}) => ($visible ? "transparent" : "var(--blackText)")};
     border-radius: 2px;
     font-size: 0;
     position: relative;
     z-index: 25;
     transition: all .1s linear;
+    position: relative;
+    top: 10px;
 
     &::before,
     &::after {
@@ -97,63 +200,159 @@ const BurgerInner = styled.span`
 }
 
     &::before {
-        top: -8px;
+        top: ${({$visible}) => ($visible ? "50%" : "8px")};
+        transform: ${({$visible}) => ($visible ? "rotate(-45deg) translateY(-70%)" : "0")};
     }
 
     &::after {
-        bottom: -8px;
+        bottom: ${({$visible}) => ($visible ? "50%" : "8px")};
+        transform: ${({$visible}) => ($visible ? "rotate(45deg) translateY(70%)" : "0")};
     }
 `;
 
-const BurgerNav = styled.div`
+const BurgerNav = styled.nav`
+display: flex;
+flex-direction: row;
+justify-content: right;
+width: 100%;
+height: 100dvh;
+position: absolute;
+top: 0;
+right: 0; 
+z-index: 3;
+background-color: oklch(0% 0 0 / 40%);
+transform: translateX(${({$visible}) => ($visible ? '0' : '250%')});
+transition: transform 0.3s linear;
+
+@media(width <=430px){
+    width: 100%;
+}
+`;
+
+const BurgerNavInner = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding: 85px 35px 40px;
+background-color: #fff;
+opacity: 1;
+position: absolute;
+top: 0;
+right: 0;
+z-index: 4;
+width: 320px;
+height: 100%;
+
+@media(width <=430px){
+    width: 100%;
+}
+`
+const BurgerNavContent = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 
 `
-export default function HeaderElem(){
+const HeaderButton = styled(ButtonElem)`
+
+    display: flex;
+    font-size: clamp(10px, 1vw, 16px);
+
+    @media(width <= 960px){
+        display: none;
+    }
+`
+
+export default function HeaderElem() {
     const [isFixed, setIsFixed] = useState(false);
-    const [isHidden, setIsHidden] = useState(false);
-    const handleScroll = () => {
-        if(window.scrollY > 64){
-            setIsFixed(true);
-        } else{
-            setIsFixed(false);
-        }
-    };
+    const [isVisible, setIsVisible] = useState(false);
+    const burgerNavRef = useRef(null);
+    const burgerIconRef = useRef(null);
+
     useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+        const handleScroll = () => {
+            setIsFixed(window.scrollY > 0);
+        };
 
-    return() => {
-        window.removeEventListener('scroll', handleScroll);
+        const handleClickOutside = (event) => {
+            if (
+                burgerNavRef.current &&
+                !burgerNavRef.current.contains(event.target) &&
+                burgerIconRef.current &&
+                !burgerIconRef.current.contains(event.target)
+            ) {
+                setIsVisible(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isVisible) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }, [isVisible]);
+
+    const toggleBurgerNav = () => {
+        setIsVisible((prev) => !prev);
     };
-    
-},[isFixed]);
 
-    return(
-        <Header onScroll={handleScroll}>
+    return (
+        <Header $fixed={isFixed}>
             <div className="container">
-                <Logo>
-                    Игошина Анастасия
-                </Logo>
-                <Nav>
-                    <NavItem>Форматы работы</NavItem>
-                    <NavItem>Инфопродукты<Triangle/></NavItem>
-                    <NavItem>Обо мне</NavItem>
-                    <NavItem>Контакты</NavItem>
-                </Nav>
-                <BurgerMenu>
-                    <Burger>
-                        <BurgerIcon>
-                            <BurgerInner/>
+                <HeaderInner>
+                    <Logo>Игошина Анастасия</Logo>
+                    <Nav>
+                        <NavItem>Форматы работы</NavItem>
+                        <SubmenuWrapper style={{ height: "60px" }}>Инфопродукты<Triangle/>
+                            <Submenu>
+                                <NavItem>Сборники рецептов</NavItem>
+                                <NavItem>Методички / Шпаргалки</NavItem>
+                            </Submenu>
+                        </SubmenuWrapper>
+                        <NavItem>Обо мне</NavItem>
+                        <NavItem>Контакты</NavItem>
+                    </Nav>
+                    {/* <BurgerMenu>
+                        <BurgerIcon ref={burgerIconRef} onClick={toggleBurgerNav}>
+                            <BurgerSpan $visible={isVisible}/>
                         </BurgerIcon>
-                        <BurgerNav>
-                            <NavItem>Форматы работы</NavItem>
-                            <NavItem>Инфопродукты<Triangle/></NavItem>
-                            <NavItem>Обо мне</NavItem>
-                            <NavItem>Контакты</NavItem>
+                        <BurgerNav  $visible={isVisible}>
+                            <BurgerNavInner ref={burgerNavRef}>
+                                <BurgerNavContent>
+                                    <Logo style={{marginBottom: "30px"}}>Игошина Анастасия</Logo>
+                                    <NavItemBurger>Форматы работы</NavItemBurger>
+                                    <SubmenuWrapper $visible={isVisible}>
+                                        <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "7px", margin: "7px 0", fontSize: "16px", fontWeight: "600"}}>Инфопродукты<Triangle/>
+                                        </div>
+                                        <SubmenuBurger>
+                                            <NavItem style={{margin: "6px 0"}}>Сборники рецептов</NavItem>
+                                            <NavItem>Методички / Шпаргалки</NavItem>
+                                        </SubmenuBurger>
+                                    </SubmenuWrapper>
+                                    <NavItemBurger>Обо мне</NavItemBurger>
+                                    <NavItemBurger>Контакты</NavItemBurger>
+                                </BurgerNavContent>
+                                <ButtonElem>Связаться со мной
+                                        <TelegramIcon variant="default" />
+                                </ButtonElem>
+                            </BurgerNavInner>
                         </BurgerNav>
-                    </Burger>
-                </BurgerMenu>
-                <ButtonElem style={{display: "block"}}>Связаться со мной</ButtonElem>
+                    </BurgerMenu> */}
+                    <HeaderButton>Связаться со мной
+                            <TelegramIcon  variant="default"/>
+                    </HeaderButton>
+                </HeaderInner>
             </div>
         </Header>
-    )
+    );
 }

@@ -10,6 +10,7 @@
   --secondaryText: oklch(38.48% 0.015 153.22);
   --greyText: oklch(63.5% 0.007 159.97);
   --borderGreen: oklch(85.36% 0.047 126.13);
+  --borderGreenHovered: oklch(77.3% 0.054 126.67);
   --borderGrey: oklch(92.99% 0.002 145.56);
   --font-family-1: "Tenor sans";
   --font-family-2: "Raleway";
@@ -35,20 +36,13 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-width: 100%;
-    min-height: 100dvh;
-    overflow-x: hidden;
-    height: 1000dvh;
+    /* overflow-x: hidden; */
+    background-color: var(--backgroundColor);
 }
 img {
     width: 100%;
     height: auto;
     display: block;
-}
-
-p,
-a {
-    font-size: 20px;
-    color: #000;
 }
 
 a,
@@ -58,6 +52,7 @@ textarea {
     font-size: inherit;
     font-style: inherit;
     outline: none;
+    text-decoration: none;
 }
 
 h1,
@@ -69,12 +64,6 @@ h6,
 p,
 a {
     margin: 0;
-    font-family: "Raleway";
-}
-h1,
-h2, 
-h3{
-  font-family: "Tenor Sans";
 }
 a, a:hover,
 a:visited,
@@ -82,17 +71,17 @@ button {
     cursor: pointer;
     text-decoration: none;
     outline: none;
-    color: black;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: min(78vw, 1540px);
+    width: min(80vw, 1148px);
     max-height: fit-content;
     margin: 0 auto;
+
+    @media(width <= 960px){
+        width: 100%;
+        padding: 0 40px;
+    }
 }
 
 ul, li {

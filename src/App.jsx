@@ -1,13 +1,18 @@
 import { useState } from 'react'
 import './App.css'
-import ButtonElem from './conponents/button'
 import HeaderElem from './sections/header'
+import MainPage from './pages/mainPage'
+import FooterElem from './sections/footer'
+
+
 
 function App() {
 
   return (
     <>
     <HeaderElem/>
+    <MainPage/>
+    <FooterElem/>
     </>
   )
 }
