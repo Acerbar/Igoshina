@@ -8,62 +8,111 @@ const CoopItemWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: clamp(290px, 49%, 565px);
-    min-height: 230px;
-    padding: 2em;
+    width: min(49%, 565px);
+    height: 230px;
+    padding: 1.5em;
     background-color: oklch(100% 0 0);
     border: 1px solid var(--borderGrey);
     border-radius: 20px;
     transition: all .2s linear;
 
-    &:hover{
+    &:hover {
         background-color: var(--lineGreen);
     }
     
+
+    @media (width <= 960px) {
+        width: min(48.5%, 435px);
+        min-height: 200px;
+        height: auto;
+        padding: 1em;
+    }
+
+    @media (width <= 640px) {
+        height: 270px;
+        margin: 0 auto;
+    }
+
+    @media (width <= 597px) {
+        width: max(425px, 80%);
+        height: 230px;
+        padding: 1em;
+    }
 `;
 
 const CoopItemContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-`
+
+    @media (width <= 870px) {
+        flex-direction: column;
+        align-items: start;
+        flex: 1 1 auto;
+        margin-bottom: 1em;
+    }
+`;
 
 const ContentInnerText = styled.div`
     display: flex;
     flex-direction: column;
-`
+`;
+
 const ContentInnerTitle = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-    height: 2.2em;
 
     & > :nth-child(2) {
         align-self: end;
-    }
 
-`
+        @media (961px <= width <= 1280px) {
+            align-self: start;
+        }
+    }
+    @media(961px <= width <= 1280px){
+        flex-direction: column;
+    }
+`;
+
 const ContentInnerPrice = styled.div`
     display: flex;
     flex-direction: column;
     text-align: end;
-`
-const CooperationParagraph = styled(Paragraph)`
- @media(width<=960px){
-    font-size: 14px;
+
+    @media (width <= 870px) {
+        text-align: start;
     }
- }
-`
-const CooperationTitle = styled(TitleH4)`
-@media(width<=960px){
-    font-size: 20px;
- }
- @media(width<=320px){
-    font-size: 18px;
- }
-`
-export default function CooperationItem({title, subtitle, text, price, prepay, isLast}){
+`;
+
+const CooperationParagraph = styled(Paragraph)`
+    @media (width <= 640px) {
+        font-size: 14px;
+    }
+`;
+
+const TimeParagraph = styled(CooperationParagraph)`
+    font-weight: 500;
+    color: var(--mainGreen);
+
+    @media (641px <= width <= 1054px) {
+        display: none;
+    }
+`;
+
+
+const CooperationButton = styled(ButtonElem)`
+@media (width <= 640px) {
+    margin: 0 auto;
+    width: 230px;
+}
+    @media (width <= 440px) {
+        width: 250px;
+    }
+`;
+
+export default function CooperationItem({ title, subtitle, text, price, prepay, $isLast }) {
     const [adjustedTitle, setAdjustedTitle] = useState(title);
 
     useEffect(() => {
@@ -82,36 +131,35 @@ export default function CooperationItem({title, subtitle, text, price, prepay, i
             window.removeEventListener("resize", updateTitle);
         };
     }, [title]);
-    return(
+
+    return (
         <CoopItemWrapper>
             <CoopItemContent>
                 <ContentInnerText>
-                    <ContentInnerTitle>
-                        <CooperationTitle>{adjustedTitle}</CooperationTitle>
-                        <CooperationParagraph style={{
-                            fontWeight: "500", 
-                            color: "var(--mainGreen)", 
-                            }}>{subtitle}</CooperationParagraph>
+                    <ContentInnerTitle $isLast={$isLast}>
+                        <TitleH4>{adjustedTitle}</TitleH4>
+                        <TimeParagraph>{subtitle}</TimeParagraph>
                     </ContentInnerTitle>
-                    <CooperationParagraph style={{
-                        textWrap: "balance"
-                    }}>{text}</CooperationParagraph>
+                    <CooperationParagraph style={{ textWrap: "balance", margin: "1em auto"}}>
+                        {text}
+                    </CooperationParagraph>
                 </ContentInnerText>
                 <ContentInnerPrice>
                     <TitleH4>{price}</TitleH4>
-                    <CooperationParagraph style={{color: "var(--greyText)"}}>{prepay}</CooperationParagraph>
+                    <CooperationParagraph style={{ color: "var(--greyText)" }}>{prepay}</CooperationParagraph>
                 </ContentInnerPrice>
             </CoopItemContent>
             <div className="button">
-                <ButtonElem>{isLast ? (
+                <CooperationButton>
+                    {$isLast ? (
                         <>
                             Телеграм <TelegramIcon variant="default" />
                         </>
                     ) : (
                         "Подробнее"
-                    )}</ButtonElem>
+                    )}
+                </CooperationButton>
             </div>
         </CoopItemWrapper>
-    )
-
+    );
 }

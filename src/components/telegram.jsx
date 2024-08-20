@@ -2,15 +2,10 @@ import styled from "styled-components";
 
 const Icon = styled.span`
     display: flex;
-    width: clamp(12px, 1vw, 17px);
-    height: clamp(10px, 1vw, 15px);
+    width: 16px;
+    height: 14px;
     margin-left: 0.7em;
     align-self: center;
-
-    @media(width <= 960px){
-        width: 20px;
-        height: 20px;
-    }
 
 `
 

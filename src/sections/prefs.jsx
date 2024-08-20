@@ -2,14 +2,13 @@ import { prefTexts } from "../JS/prefTexts";
 import styled from "styled-components";
 import PrefItem from "../components/prefItem";
 import { TitleH3 } from "../components/Texts";
-import Section from "../components/section";
+import { Section, Container } from "../components/section&container";
 
 const PrefsContent = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     width: 100%;
-    margin: 25px 0;
 
     & > div {
         display: flex;
@@ -20,13 +19,14 @@ const PrefsContent = styled.div`
 
     @media (max-width: 960px) {
         grid-template-columns: 1fr;
+        gap: 0;
     }
 `;
 
 export default function PrefSection() {
     return (
         <Section>
-            <div className="container">
+            <Container>
                 <TitleH3>Вместе со мной вы</TitleH3>
                 <PrefsContent>
                     <div>
@@ -40,40 +40,8 @@ export default function PrefSection() {
                         ))}
                     </div>
                 </PrefsContent>
-            </div>
+            </Container>
         </Section>
     );
 }
-
-// const PrefsContent = styled.div`
-//     column-count: 2;
-//     column-fill: balance;
-//     width: 100%;
-//     margin: 25px 0;
-
-//     & > :last-child {
-//         padding: 1.3em 0;
-
-
-//     }
-
-//     @media(width<=960px){
-//         column-count: auto;
-//     }
-
-// `
-// export default function PrefSection() {
-//     return (
-//         <Section>
-//             <div className="container">
-//                 <TitleH3>Вместе со мной вы</TitleH3>
-//                 <PrefsContent>
-//                     {prefTexts.map((prefText) => (
-//                         <PrefItem key={prefText.number} {...prefText} />
-//                     ))}
-//                 </PrefsContent>
-//             </div>
-//         </Section>
-//     );
-// }
 

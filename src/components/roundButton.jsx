@@ -6,9 +6,9 @@ const RoundButton = styled.button`
     height: 50px;
     background-color: var(--lineGreen);
     border-radius: 50%;
-    transition: all .2s linear;
+    transition: all 0.2s linear;
 
-    &:hover{
+    &:hover {
         background-color: oklch(90.91% 0.023 126.24);
     }
     &:hover,
@@ -16,19 +16,24 @@ const RoundButton = styled.button`
         outline: none;
         border: 1px solid transparent;
     }
-`
+
+    @media(width<=960px){
+        width: 40px;
+        height: 40px;
+    }
+`;
 
 const Minus = styled.div`
-    width: 22px;
+    width: 13px;
     height: 2px;
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 1;
+    z-index: 2;
     background-color: var(--mainGreen);
     transform: translate(-50%, -50%);
 
-    &::after{
+    &::after {
         content: "";
         position: absolute;
         top: 50%;
@@ -39,17 +44,25 @@ const Minus = styled.div`
         background-color: var(--mainGreen);
         transform: translate(-50%, -50%) rotate(90deg);
     }
-    ${({ hidden }) => hidden && `
+
+    ${({ $hidden }) =>
+        $hidden &&
+        `
         &::after {
             display: none;
         }
     `}
-    `
 
-export default function RoundButtonElem({onClick, minusHidden}){
-    return(
+    @media(width<=960px){
+        width: 11px;
+    }
+
+`;
+
+export default function RoundButtonElem({ onClick, minusHidden }) {
+    return (
         <RoundButton type="button" onClick={onClick}>
-            <Minus hidden={minusHidden} />
+            <Minus $hidden={minusHidden} />
         </RoundButton>
-    )
+    );
 }

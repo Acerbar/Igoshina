@@ -4,7 +4,6 @@ import { Paragraph } from "./Texts";
 const PrefItemWrapper = styled.div`
 display: flex;
 flex-direction: row;
-// text-wrap: pretty;
 height: auto;
 padding: 1.4em 0;
 gap: 1.3em;
@@ -12,6 +11,10 @@ border-bottom: 1px solid var(--borderGrey);
 
 @media(width<=960px){
     width: 100%;
+}
+
+@media(width<=640px){
+    padding: 0.8em 0;
 }
 `
 

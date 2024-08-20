@@ -7,7 +7,7 @@ const Button = styled.a`
     justify-content: center;
     width: fit-content;
     height: fit-content;
-    padding: .6em 2.3em;
+    padding: 0.6em 1.6em;
     border: 1px solid transparent;
     border-radius: 100px;
     background-color: var(--mainGreen);
@@ -28,7 +28,7 @@ const Button = styled.a`
 
 `;
 const LightButton = styled(Button)`
-    padding: .6em 2em;
+    padding: .6em 1.5em;
     border: 1px solid var(--borderGreen);
     background-color: transparent;
     color: var(--mainGreen);

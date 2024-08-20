@@ -1,47 +1,96 @@
 import styled from "styled-components";
 import { Paragraph } from "../components/Texts";
+import {ContactsContainer} from './contacts';
 
 const FooterWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 44px;
+    gap: 25px;
     padding: 50px 0 20px;
+    grid-template-areas: "date links paragraph toTop";
+
+    @media(893px <= width <=960px){
+        padding: 50px 30px 20px;
+        }
+
+    @media (width <= 892px) {
+        grid-template-columns: 50px 1fr 44px;
+        grid-template-rows: auto auto;
+        gap: 20px;
+        grid-template-areas:
+            "date links toTop"
+            "paragraph paragraph paragraph";
+    }
+
+    @media (width <= 418px){
+        grid-template-columns: 50px 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 30px 5px;
+    grid-template-areas:
+            "date links"
+            "span toTop"
+            "paragraph paragraph";
+    }
+    
 `
-const FooterContent = styled.div`
+const DateParagraph = styled(Paragraph)`
+    font-size: 14px;
+    text-wrap: nowrap;
+    color: var(--greyText);
+    grid-area: date;
+`
+
+const FooterLinks = styled.div`
     display: flex;
-    flex-direction: row;
-    `
+    gap: 25px;
+    padding: 0 2vw;
+    grid-area: links;
+
+    @media(width<=550px){
+        flex-direction: column;
+        gap: 15px;
+    }
+`
+
 const FooterLink = styled.a`
     font-family: var(--font-family-2);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.55em;
-    margin: 0 30px;
     color: var(--greyText);
     text-wrap: nowrap;
+    
 
     &:hover, &:focus{
         color: var(--blackText);
     }
 `
 const FooterParagraph = styled(Paragraph)`
-font-size: 12px; 
-color: var(--greyText); 
-max-width: 492px;
+    font-size: 12px; 
+    color: var(--greyText); 
+    max-width: 492px;
+    text-wrap: wrap;
+    grid-area: paragraph;
+
+    @media(width<=892px){
+    }
 `
 const ToTopButton = styled.a`
     display: block;
     width: 44px;
     height: 44px;
-    margin-left: 30px;
     border: 1px solid var(--borderGreen);
     border-radius: 50%;
     background-color: transparent;
     position: relative;
+    grid-area: toTop;
 
     &:hover, &:focus{
         border-color: var(--borderGreenHovered);
+    }
+
+    @media(width<=419px){
+        margin-bottom: 10px;
     }
 `
 const Arrow = styled.div`
@@ -59,18 +108,16 @@ const Arrow = styled.div`
 `
 export default function FooterElem(){
     return(
-       <div className="container">
+       <ContactsContainer>
             <FooterWrapper>
-                <FooterContent>
-                    <FooterParagraph style={{fontSize: "14px"}}>2024 ©</FooterParagraph>
-                    <FooterLink>Политика конфиденциальности</FooterLink>
-                    <FooterLink>Договор оферты</FooterLink>
-                </FooterContent>
-                <FooterContent>
+                    <DateParagraph>2024 ©</DateParagraph>
+                    <FooterLinks>
+                        <FooterLink>Политика конфиденциальности</FooterLink>
+                        <FooterLink>Договор оферты</FooterLink>
+                    </FooterLinks>
                     <FooterParagraph>Информация, размещенная на сайте не является призывом к действию, не несет медицинских диагнозов и носит исключительно ознакомительный характер</FooterParagraph>
                     <ToTopButton><Arrow/></ToTopButton>
-                </FooterContent>
             </FooterWrapper>
-        </div>
+        </ContactsContainer>
     )
 }

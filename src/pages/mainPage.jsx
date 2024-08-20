@@ -1,10 +1,10 @@
-import EducationSection from "../sections/education";
+import {EducationSection} from "../sections/education&about";
 import FAQSection from "../sections/FAQ";
 import CooperationSection from "../sections/cooperation";
 import MainSection from "../sections/main";
 import PrefSection from "../sections/prefs";
-import TelegramChannelElem from "../sections/telegramChannel";
-import ContactsElem from "../sections/contacts";
+import TelegramChannelSection from "../sections/telegramChannel";
+import ContactsSection from "../sections/contacts";
 
 export default function MainPage(){
     return(
@@ -14,8 +14,8 @@ export default function MainPage(){
             <CooperationSection/>
             <FAQSection/>
             <EducationSection/>
-            <TelegramChannelElem/>
-            <ContactsElem/>
+            <TelegramChannelSection/>
+            <ContactsSection/>
         </>
     )
 }

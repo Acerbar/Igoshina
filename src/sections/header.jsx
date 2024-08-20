@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ButtonElem from "../components/button";
 import { useEffect, useState, useRef} from "react";
 import TelegramIcon from "../components/telegram";
+import { Container } from "../components/section&container";
 
 const Header = styled.header`
     position: ${({$fixed}) => ($fixed ? 'fixed' : 'relative')};
@@ -14,9 +15,12 @@ const Header = styled.header`
     background-color: ${({$fixed}) => ($fixed ? 'var(--backgroundColor)' : '')};
 
     @media(width <= 960px){
-       padding: 30px 0;
-        
+       padding: 15px 0;
     }
+
+    @media(width <= 320px){
+        padding: 7px 0;
+     }
 `;
 
 const HeaderInner = styled.div`
@@ -30,11 +34,11 @@ const Logo = styled.p`
     display: block;
     font-family: var(--font-family-2);
     font-weight: 500;
-    font-size: clamp(16px, 1.5vw, 20px);
+    font-size: 24px;
     color: var(--secondaryText);
 
-    @media(width <= 960px){
-        font-size: 20px;
+    @media(width <= 640px){
+        font-size: clamp(14.5px, 3.8vw, 24px);
         
     }
 `;
@@ -52,7 +56,7 @@ const Nav = styled.nav`
 const NavItem = styled.a`
     display: block;
     font-family: var(--font-family-2);
-    font-size: clamp(14px, 1.2vw, 16px);
+    font-size: clamp(12px, 1.2vw, 16px);
     font-weight: 400;
     line-height: 1.5em;
     color: var(--secondaryText);
@@ -60,6 +64,10 @@ const NavItem = styled.a`
 
     &:hover{
         color: var(--blackText);
+    }
+
+    @media(width<=960px){
+        font-size: 16px;
     }
 `;
 const NavItemBurger = styled(NavItem)`
@@ -133,7 +141,7 @@ const SubmenuWrapper = styled.div`
     align-items: ${({$visible}) => ($visible ? "start" : "center")};
     gap: ${({$visible}) => ($visible ? "0" : "7px")};
     font-family: var(--font-family-2);
-    font-size: clamp(14px, 1.2vw, 16px);
+    font-size: clamp(12px, 1.2vw, 16px);
     font-weight: 400;
     line-height: 1.5em;
     color: var(--secondaryText);
@@ -159,7 +167,15 @@ const SubmenuWrapper = styled.div`
         transform: translate(0, 0);
     }
 `
-
+const SubmenuInner = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 7px;
+margin: 7px 0;
+font-size: 16px;
+font-weight: 600;
+`
 const BurgerMenu = styled.div`
     display: none;
 
@@ -173,6 +189,11 @@ const BurgerIcon = styled.div`
     width: 24px;
     height: 24px;
     position: relative;
+
+    @media(width <=640px){
+        width: 20px;
+        height: 20px;
+    }
 `;
 const BurgerSpan = styled.span`
     display: block;
@@ -211,15 +232,15 @@ const BurgerSpan = styled.span`
 `;
 
 const BurgerNav = styled.nav`
-display: flex;
+display: ${props => (props.$visible ? 'block' : 'none')};
 flex-direction: row;
 justify-content: right;
-width: 100%;
+width: 100vw;
 height: 100dvh;
-position: absolute;
+position: fixed;
 top: 0;
 right: 0; 
-z-index: 3;
+overflow: hidden;
 background-color: oklch(0% 0 0 / 40%);
 transform: translateX(${({$visible}) => ($visible ? '0' : '250%')});
 transition: transform 0.3s linear;
@@ -236,12 +257,12 @@ justify-content: space-between;
 padding: 85px 35px 40px;
 background-color: #fff;
 opacity: 1;
-position: absolute;
+position: fixed;
 top: 0;
 right: 0;
-z-index: 4;
 width: 320px;
 height: 100%;
+overflow: hidden;
 
 @media(width <=430px){
     width: 100%;
@@ -255,8 +276,7 @@ justify-content: space-between;
 `
 const HeaderButton = styled(ButtonElem)`
 
-    display: flex;
-    font-size: clamp(10px, 1vw, 16px);
+    font-size: clamp(12px, 1.2vw, 16px);
 
     @media(width <= 960px){
         display: none;
@@ -308,7 +328,7 @@ export default function HeaderElem() {
 
     return (
         <Header $fixed={isFixed}>
-            <div className="container">
+            <Container>
                 <HeaderInner>
                     <Logo>Игошина Анастасия</Logo>
                     <Nav>
@@ -322,7 +342,7 @@ export default function HeaderElem() {
                         <NavItem>Обо мне</NavItem>
                         <NavItem>Контакты</NavItem>
                     </Nav>
-                    {/* <BurgerMenu>
+                    <BurgerMenu>
                         <BurgerIcon ref={burgerIconRef} onClick={toggleBurgerNav}>
                             <BurgerSpan $visible={isVisible}/>
                         </BurgerIcon>
@@ -332,8 +352,8 @@ export default function HeaderElem() {
                                     <Logo style={{marginBottom: "30px"}}>Игошина Анастасия</Logo>
                                     <NavItemBurger>Форматы работы</NavItemBurger>
                                     <SubmenuWrapper $visible={isVisible}>
-                                        <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "7px", margin: "7px 0", fontSize: "16px", fontWeight: "600"}}>Инфопродукты<Triangle/>
-                                        </div>
+                                        <SubmenuInner>Инфопродукты<Triangle/>
+                                        </SubmenuInner>
                                         <SubmenuBurger>
                                             <NavItem style={{margin: "6px 0"}}>Сборники рецептов</NavItem>
                                             <NavItem>Методички / Шпаргалки</NavItem>
@@ -342,17 +362,17 @@ export default function HeaderElem() {
                                     <NavItemBurger>Обо мне</NavItemBurger>
                                     <NavItemBurger>Контакты</NavItemBurger>
                                 </BurgerNavContent>
-                                <ButtonElem>Связаться со мной
+                                <ButtonElem style={{alignSelf: "center"}}>Связаться со мной
                                         <TelegramIcon variant="default" />
                                 </ButtonElem>
                             </BurgerNavInner>
                         </BurgerNav>
-                    </BurgerMenu> */}
+                    </BurgerMenu>
                     <HeaderButton>Связаться со мной
                             <TelegramIcon  variant="default"/>
                     </HeaderButton>
                 </HeaderInner>
-            </div>
+            </Container>
         </Header>
     );
 }

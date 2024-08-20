@@ -13,12 +13,21 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
+gap: 3em;
 padding: 1em 1em 1em 0;
+
+    @media(width <= 640px){
+        padding-right: 0;
+    }
 `
 const FAQParagraph = styled(Paragraph)`
 white-space: pre-line;
 padding: 0 0 2em 1em;
 width: 78%;
+
+@media(width <=640px){
+    width: 85%;
+}
 `
 export default function FAQItem({title, content}){
     const [isOpen, setIsOpen] = useState(false);
