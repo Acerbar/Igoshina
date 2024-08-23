@@ -4,14 +4,38 @@ import { TitleH3 } from "../components/Texts";
 import { specializationTexts } from "../JS/specializationText";
 import SpecializationItem from "../components/specializationItem";
 
+const SpecializationInner = styled(Container)`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(auto, 1fr);
+    column-gap: 2.5%;
+    width: 100%;
+    height: auto;
+
+    @media(width<=1080px){
+        padding: 0;
+    }
+
+    @media(width<=960px){
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media(width<=500px){
+        grid-template-columns: 1fr;
+    }
+`
+
 export default function SpecializationSection(){
     return(
         <Section>
-            <Container>
+            <Container style={{height: "fit-content"}}>
                 <TitleH3>Специализация</TitleH3>
+                <SpecializationInner>
                 {specializationTexts.map((specializationText) => (
                         <SpecializationItem key={specializationText.content} {...specializationText} />
                     ))}
+                </SpecializationInner>
+                
             </Container>
         </Section>
     )

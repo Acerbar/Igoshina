@@ -17,6 +17,7 @@ const Button = styled.a`
     font-size: 16px;
     line-height: 1.45em;
     text-wrap: nowrap;
+    transition: all .3s linear;
 
     &:hover,
     &:focus {
@@ -24,6 +25,10 @@ const Button = styled.a`
         color: #fff;
         border: 1px solid transparent;
         background-color: oklch(54.36% 0.113 128.95);
+    }
+
+    @media(width<=320px){
+        font-size: 14px;
     }
 
 `;

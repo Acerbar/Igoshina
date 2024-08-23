@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "../components/Images";
 import { Paragraph, TitleH3 } from "../components/Texts";
-import EducationItem from "../components/educationItem";
+import {EducationItem} from "../components/educationItem";
 import { educationTexts } from "../JS/educationTexts";
 import ButtonElem from "../components/button";
 import {Section} from "../components/section&container";
@@ -15,10 +15,10 @@ const EducationInner = styled.div`
     border-radius: 60px;
     gap: 2em;
     max-width: 1240px;
-    margin: 25px 10px 0;
+    margin: 0px 10px;
 
     @media(width <=960px){
-        margin: 25px 10px 0;
+        margin: 0px 10px;
         padding: 2em;
     }
 
@@ -36,7 +36,7 @@ const EducationInner = styled.div`
         border-radius: 15px;
     }
 `
-const EducationText = styled.div`
+export const EducationText = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -46,7 +46,11 @@ const EducationText = styled.div`
         width: 100%;
     }
 `
-const EducationPhoto = styled.div`
+export const EducationTitle = styled(TitleH3)`
+margin: .5em 0;
+`
+
+export const EducationPhoto = styled.div`
     width: 45%;
 
     & > img{
@@ -78,10 +82,13 @@ export const EducationParagraph = styled(Paragraph)`
 
   
 `
-const EducationButton = styled(ButtonElem)`
+export const EducationButton = styled(ButtonElem)`
     margin-top: 30px;
     @media(width<=430px){
     align-self: center;
+    @media(width<=960px){
+        
+    }
 }
 
 `
@@ -93,12 +100,12 @@ export function EducationSection(){
                     <img src={Image.AboutMePhoto} alt="" />
                 </EducationPhoto>
                 <EducationText>
-                    <TitleH3 style={{margin: "0.5em 0"}}>Игошина Анастасия</TitleH3>
-                    <EducationParagraph style={{padding: "0.5em 0"}}>Я дипломированный нутрициолог и член Ассоциации Нутрициологов и Коучей по Здоровью.</EducationParagraph>
+                    <EducationTitle>Игошина Анастасия</EducationTitle>
+                    <EducationParagraph>Я дипломированный нутрициолог и член Ассоциации Нутрициологов и Коучей по Здоровью.</EducationParagraph>
                     <EducationParagraph>В рамках своих консультаций я не даю банальных, всем известных советов по здоровью. Мои рекомендации всегда строго персонализированы и индивидуальны.</EducationParagraph>
                     <Paragraph style={{fontWeight: "600", marginTop: "2em"}}>Образование</Paragraph>
                     {educationTexts.map((educationText) => (
-                            <EducationItem key={educationText.date} {...educationText} />
+                            <EducationItem key={educationText.id} {...educationText} />
                         ))}
                     <EducationButton>Подробнее обо мне</EducationButton>
                 </EducationText>
@@ -107,47 +114,88 @@ export function EducationSection(){
     )
 }
 
+const AboutInner = styled(EducationInner)`
+height: 594px;
+margin-top: 10px;
+
+@media(width<= 960px){
+    height: 500px;
+}
+@media(width<= 892px){
+    height: fit-content;
+}
+
+@media(width<= 500px){
+    padding: 0;
+}
+`
+const AboutPhoto = styled(EducationPhoto)`
+
+& > img{
+    @media(width<=500px){
+        border-radius: 20px 20px 0 0;
+    }
+}
+`
+const AboutText = styled(EducationText)`
+justify-content: center;
+gap: 16px;
+padding: 0 1em 1em;
+`
+const AboutParagraph = styled(EducationParagraph)`
+@media(width<=960px){
+    font-size: clamp(14px, 2vw, 16px);
+}
+`
+
 const ButtonsBlock = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-`
+    gap: 15px;
 
+    @media(width<=500px){
+        padding: 20px 0;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+`
+const EducationButtonStyled = styled(EducationButton)`
+    width: 155px;
+
+    &:hover{
+        background-color: var(--mainGreen);
+        color: oklch(100% 0 0);
+    }
+
+    @media(width <= 960px){
+        width: 133px;
+    }
+    
+    @media(width<=500px){
+        width: 250px;
+        margin-top: 0;
+    }
+`
 export function AboutSection(){
     return(
         <Section>
-            <EducationInner>
-            <EducationPhoto>
+            <AboutInner>
+                <AboutPhoto>
                     <img src={Image.AboutMePhoto} alt="" />
-                </EducationPhoto>
-                <EducationText>
-                    <TitleH3 style={{margin: "0.5em 0"}}>Я Игошина Анастасия - дипломированный нутрициолог</TitleH3>
-                    <EducationParagraph style={{padding: "0.5em 0"}}>Я дипломированный нутрициолог и член Ассоциации Нутрициологов и Коучей по Здоровью.</EducationParagraph>
-                    <EducationParagraph>В рамках своих консультаций я не даю банальных, всем известных советов по здоровью. Мои рекомендации всегда строго персонализированы и индивидуальны.</EducationParagraph>
+                </AboutPhoto>
+                <AboutText>
+                    <EducationTitle>Я Игошина Анастасия – дипломированный нутрициолог</EducationTitle>
+                    <AboutParagraph>Я дипломированный нутрициолог и член Ассоциации Нутрициологов и Коучей по Здоровью.</AboutParagraph>
+                    <AboutParagraph>В рамках своих консультаций я не даю банальных, всем известных советов по здоровью. Мои рекомендации всегда строго персонализированы и индивидуальны.</AboutParagraph>
                     <ButtonsBlock>
-                        <EducationButton>Телеграм</EducationButton>
-                        <EducationButton>Whatsapp</EducationButton>
-                        <EducationButton>Почта</EducationButton>
+                        <EducationButtonStyled>Телеграм</EducationButtonStyled>
+                        <EducationButtonStyled>WhatsApp</EducationButtonStyled>
+                        <EducationButtonStyled>Почта</EducationButtonStyled>
                     </ButtonsBlock>
-                </EducationText>
-            </EducationInner>
+                </AboutText>
+            </AboutInner>
         </Section>
     )
 }
 
-export function EducationSectionType(){
-    <Section>
-        <EducationInner>
-            <EducationPhoto>
-                <img src={Image.AboutMePhoto} alt="" />
-            </EducationPhoto>
-            <EducationText>
-                <TitleH3 style={{margin: "0.5em 0"}}>Образование</TitleH3>
-                {educationTexts.map((educationText) => (
-                        <EducationItem key={educationText.date} {...educationText} />
-                    ))}
-                <EducationButton>Дипломы и сертификаты</EducationButton>
-            </EducationText>
-        </EducationInner>
-    </Section>
-}

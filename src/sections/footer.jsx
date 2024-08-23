@@ -10,7 +10,7 @@ const FooterWrapper = styled.div`
     grid-template-areas: "date links paragraph toTop";
 
     @media(893px <= width <=960px){
-        padding: 50px 30px 20px;
+        padding: 20px 30px;
         }
 
     @media (width <= 892px) {

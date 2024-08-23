@@ -6,10 +6,10 @@ flex-direction: row;
 justify-content: space-between;
 width: 100%;
 gap: 2em;
-padding: 40px 0;
+padding: 50px 0;
 
 @media(width<=960px){
-    padding: 50px 0 0;
+    padding: 0 0 50px;
 }
 
 @media(width<=640px){

@@ -7,12 +7,14 @@ import Tea from "/tea.jpg";
 import Child from "/child.jpg";
 import Pie from "/pie.jpg";
 import Salmon from "/salmon.jpg";
+import Diplom from "/diplom.jpg";
 
 const Image = {
     IntroImage,
     AboutMePhoto,
     IceCream,
     MailoutImage,
+    Diplom,
     ButtonBackground,
     Tea,
     Child,

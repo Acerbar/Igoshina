@@ -6,6 +6,7 @@ import PrefSection from "../sections/prefs";
 import TelegramChannelSection from "../sections/telegramChannel";
 import ContactsSection from "../sections/contacts";
 
+
 export default function MainPage(){
     return(
         <>

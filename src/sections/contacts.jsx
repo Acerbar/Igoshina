@@ -26,7 +26,7 @@ const ContactsInner = styled.div`
 const ContactsButtons = styled.div`
 display: flex;
 flex-direction: row;
-justify-content: space-around;
+justify-content: space-between;
 flex-wrap: wrap;
 row-gap: clamp(15px, 8.5vw, 55px);
 width: 100%;
@@ -34,9 +34,6 @@ padding: 67px 0;
 position: relative;
 z-index: 1;
 
-@media(width<=640px){
-    justify-content: space-between;
-}
 
 & > :first-child {
     position: relative;
@@ -63,6 +60,10 @@ z-index: 1;
       opacity: 1;
     }
   }
+
+  @media(width<=640px){
+    padding: 30px 0;
+  }
 `
 
 const Mailout = styled.div`
@@ -74,6 +75,7 @@ const Mailout = styled.div`
     background-color: var(--lineGreen);
     border-radius: 24px;
     overflow: hidden;
+    margin-top: 50px;
 
     @media(width<=892px){
         flex-direction: column;
@@ -125,7 +127,7 @@ const MailoutContent = styled.div`
 `
 
 const ContactButton = styled(ButtonElem)`
-    width: 22%;
+    width: 23%;
     transition: all .2s linear;
 
     @media(width<=640px){
@@ -149,7 +151,7 @@ const MailoutFormWrapper = styled.div`
     align-items: center;
     gap:.7em;
 
-    @media(width<=490px){
+    @media(width<=500px){
         flex-direction: column;
     }
 `
@@ -195,6 +197,10 @@ const SubmitButton = styled.div`
 
     @media(width<=490px){
         width: 250px;
+    }
+
+    @media(width<=320px){
+        font-size: 14px;
     }
 `
 const SubmitParagraph =styled(Paragraph)`
