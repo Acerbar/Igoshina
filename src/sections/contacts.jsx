@@ -141,7 +141,7 @@ const ContactButton = styled(ButtonElem)`
 
     &:hover{
         background-color: var(--mainGreen);
-        color: oklch(100% 0 0);
+        color: var(--whiteColor);
     } ;
 `
 

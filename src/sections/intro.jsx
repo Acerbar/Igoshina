@@ -7,15 +7,11 @@ import { Section, Container } from "../components/section&container";
 
 const IntroWrapper = styled(Section)`
 
-margin-top: 45px;
-
-
 @media(width<=640px){
     flex-direction: column-reverse;
 }
 
 @media(width<=320px){
-    margin-top: 25px;
 }
 `
 

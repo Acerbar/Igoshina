@@ -39,27 +39,35 @@ const EducationTypePhoto =styled(EducationPhoto)`
 }
 `
 
-export default function EducationSectionType(){
-    const [isModalOpen, setIsModalOpen] = useState(false)
+export default function EducationSectionType() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [slideIndex, setSlideIndex] = useState(0);
 
-    function openModal(){
-        setIsModalOpen(true)
-    }
+    const openModal = (index) => {
+        setSlideIndex(index);
+        setIsModalOpen(true);
+    };
 
     const closeModal = () => {
-        setIsModalOpen(false)
-    }
-    return(
-        <Section style={{marginBottom: "40px"}} id="modal-nest">
-            <DiplomItem open={isModalOpen} onClose={closeModal}/>
+        setIsModalOpen(false);
+    };
+
+    return (
+        <Section style={{ marginBottom: "40px" }} id="modal-nest">
+            <DiplomItem open={isModalOpen} onClose={closeModal} initialSlideIndex={slideIndex} />
             <Container>
-            <EducationTypeTitle>Образование</EducationTypeTitle>
+                <EducationTypeTitle>Образование</EducationTypeTitle>
                 <EducationContent>
                     <EducationText>
-                        {educationTypeTexts.map((educationTypeText) => (
-                                <EducationTypeItem key={educationTypeText.id} {...educationTypeText} />
-                            ))}
-                        <EducationButton onClick={openModal}>Дипломы и сертификаты</EducationButton>
+                        {educationTypeTexts.map((educationTypeText, index) => (
+                            <EducationTypeItem
+                                key={educationTypeText.id}
+                                {...educationTypeText}
+                                onLinkClick={openModal}
+                                slideIndex={index}
+                            />
+                        ))}
+                        <EducationButton onClick={() => openModal(0)}>Дипломы и сертификаты</EducationButton>
                     </EducationText>
                     <EducationTypeTitleHidden>Образование</EducationTypeTitleHidden>
                     <EducationTypePhoto>
@@ -68,6 +76,5 @@ export default function EducationSectionType(){
                 </EducationContent>
             </Container>
         </Section>
-    )
-    
+    );
 }

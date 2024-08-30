@@ -11,11 +11,11 @@ const EducationInner = styled.div`
     flex-direction: row;
     justify-content: space-between;
     padding: 3em;
-    background-color: oklch(100% 0 0);
+    background-color: var(--whiteColor);
     border-radius: 60px;
     gap: 2em;
     max-width: 1240px;
-    margin: 0px 10px;
+    margin: 0px auto;
 
     @media(width <=960px){
         margin: 0px 10px;
@@ -165,7 +165,7 @@ const EducationButtonStyled = styled(EducationButton)`
 
     &:hover{
         background-color: var(--mainGreen);
-        color: oklch(100% 0 0);
+        color: var(--whiteColor);
     }
 
     @media(width <= 960px){

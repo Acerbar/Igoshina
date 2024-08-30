@@ -32,7 +32,7 @@ export default function SpecializationSection(){
                 <TitleH3>Специализация</TitleH3>
                 <SpecializationInner>
                 {specializationTexts.map((specializationText) => (
-                        <SpecializationItem key={specializationText.content} {...specializationText} />
+                        <SpecializationItem hasBorder key={specializationText.content} {...specializationText} />
                     ))}
                 </SpecializationInner>
                 

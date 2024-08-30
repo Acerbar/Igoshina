@@ -17,10 +17,6 @@ const Header = styled.header`
     @media(width <= 960px){
        padding: 15px 0;
     }
-
-    @media(width <= 320px){
-        padding: 7px 0;
-     }
 `;
 
 const HeaderInner = styled.div`
@@ -61,6 +57,7 @@ const NavItem = styled.a`
     line-height: 1.5em;
     color: var(--secondaryText);
     text-wrap: nowrap;
+    text-decoration: none;
 
     &:hover{
         color: var(--blackText);
@@ -77,8 +74,8 @@ const NavItemBurger = styled(NavItem)`
     margin: 7px 0;
 `
 const Triangle = styled.span`
-width: 0px;
-height: 0px;
+width: 0;
+height: 0;
 transition: transform 0.3s linear;
 border-style: solid;
 border-width: 8px 5px 0 5px;
@@ -205,7 +202,6 @@ const BurgerSpan = styled.span`
     position: relative;
     z-index: 25;
     transition: all .1s linear;
-    position: relative;
     top: 10px;
 
     &::before,
@@ -232,9 +228,9 @@ const BurgerSpan = styled.span`
 `;
 
 const BurgerNav = styled.nav`
-display: ${props => (props.$visible ? 'block' : 'none')};
+display: ${props => (props.$visible ? 'flex' : 'none')};
 flex-direction: row;
-justify-content: right;
+justify-content: flex-end;
 width: 100vw;
 height: 100dvh;
 position: fixed;
@@ -316,9 +312,9 @@ export default function HeaderElem() {
 
     useEffect(() => {
         if (isVisible) {
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('body__locked');
         } else {
-            document.body.style.overflow = '';
+            document.body.classList.remove('body__locked');
         }
     }, [isVisible]);
 
