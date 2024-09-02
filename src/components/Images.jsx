@@ -8,13 +8,13 @@ import Child from "/child.jpg";
 import Pie from "/pie.jpg";
 import Salmon from "/salmon.jpg";
 import Diplom from "/diplom.jpg";
+import Screenshot from "/feedbackscreen.jpg";
 
 const Image = {
     IntroImage,
     AboutMePhoto,
     IceCream,
     MailoutImage,
-    Diplom,
     ButtonBackground,
     Tea,
     Child,
@@ -22,4 +22,13 @@ const Image = {
     Salmon,
 }
 
+const Diploms = {
+    Diplom,
+}
+
+const FeedbackImages = {
+    Screenshot,
+}
 export default Image
+export  {Diploms}
+export {FeedbackImages}

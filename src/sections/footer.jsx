@@ -106,18 +106,29 @@ const Arrow = styled.div`
     border-style: solid;
     border-width: 1.5px;
 `
-export default function FooterElem(){
-    return(
-       <ContactsContainer>
+export default function FooterElem() {
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
+    return (
+        <ContactsContainer>
             <FooterWrapper>
-                    <DateParagraph>2024 ©</DateParagraph>
-                    <FooterLinks>
-                        <FooterLink>Политика конфиденциальности</FooterLink>
-                        <FooterLink>Договор оферты</FooterLink>
-                    </FooterLinks>
-                    <FooterParagraph>Информация, размещенная на сайте не является призывом к действию, не несет медицинских диагнозов и носит исключительно ознакомительный характер</FooterParagraph>
-                    <ToTopButton><Arrow/></ToTopButton>
+                <DateParagraph>2024 ©</DateParagraph>
+                <FooterLinks>
+                    <FooterLink href="#">Политика конфиденциальности</FooterLink>
+                    <FooterLink href="#">Договор оферты</FooterLink>
+                </FooterLinks>
+                <FooterParagraph>
+                    Информация, размещенная на сайте не является призывом к действию, не несет медицинских диагнозов и носит исключительно ознакомительный характер
+                </FooterParagraph>
+                <ToTopButton onClick={scrollToTop}>
+                    <Arrow />
+                </ToTopButton>
             </FooterWrapper>
         </ContactsContainer>
-    )
+    );
 }

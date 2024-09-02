@@ -234,7 +234,6 @@ export default function ContactsSection(){
 
     const sendEmail = (e) => {
         e.preventDefault();
-        console.log("fine")
       };
 
     return(

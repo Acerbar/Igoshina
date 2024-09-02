@@ -7,6 +7,7 @@ import { useState } from "react";
 const FAQItemWrapper = styled.div`
 border-top: 1px solid var(--borderGrey);
 border-bottom: 1px solid var(--borderGrey);
+
 `
 const FAQItemInner = styled.div`
 display: flex;

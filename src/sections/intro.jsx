@@ -77,7 +77,7 @@ export default function MainSection(){
                     <IntroParagraph>Докажу, что здоровый образ жизни — это легко и вкусно!
                                 Научу заботиться о себе в рамках ваших возможностей
                     </IntroParagraph>
-                    <IntroButton isColored>Связаться со мной
+                    <IntroButton isColored to="/Igoshina/contacts">Связаться со мной
                         <TelegramIcon variant="light" />  
                     </IntroButton>
                 </IntroContent>

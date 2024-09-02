@@ -26,25 +26,25 @@ export function EducationItem({id, date, content}){
     )
 }
 
-const EducationLink = styled.a`
+const EducationLink = styled.span`
 color: var(--mainGreen);
+cursor: pointer;
 
 &:hover{
     color: var(--mainGreenHovered);
 }
 `
 
-export function EducationTypeItem({id, date, content, link}){
-    return(
+export function EducationTypeItem({ id, date, content, link, onLinkClick, slideIndex }) {
+    return (
         <EducationElemWrapper>
             <EducationDate>{date}</EducationDate>
-            <Paragraph>{content}<EducationLink>{link}</EducationLink></Paragraph>
+            <Paragraph>
+                {content}
+                <EducationLink onClick={() => onLinkClick(slideIndex)}>
+                    {link}
+                </EducationLink>
+            </Paragraph>
         </EducationElemWrapper>
-    )
-}
-
-export function DiplomItem({id, content, link}){
-    <EducationElemWrapper>
-            <Paragraph>{content}<EducationLink>{link}</EducationLink></Paragraph>
-        </EducationElemWrapper>
+    );
 }

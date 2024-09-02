@@ -107,7 +107,7 @@ export function EducationSection(){
                     {educationTexts.map((educationText) => (
                             <EducationItem key={educationText.id} {...educationText} />
                         ))}
-                    <EducationButton>Подробнее обо мне</EducationButton>
+                    <EducationButton to="/Igoshina/about">Подробнее обо мне</EducationButton>
                 </EducationText>
             </EducationInner>
         </Section>

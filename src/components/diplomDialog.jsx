@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect} from "react";
 import styled from 'styled-components';
 import { Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,7 +11,7 @@ import 'swiper/css/pagination';
 import { DiplomTexts } from '../JS/diplomTexts';
 import { Paragraph } from './Texts';
 
-const DiplomItemWrapper = styled.dialog`
+export const DiplomItemWrapper = styled.dialog`
   width: 770px;
   height: 700px;
   background-color: transparent;
@@ -36,11 +36,11 @@ const DiplomItemWrapper = styled.dialog`
 
 `;
 
-const DiplomItemInner = styled.div`
+export const DiplomItemInner = styled.div`
   width: 93.5%;
   height: max-content;
   padding: 40px 20px 10px;
-  background-color: oklch(100% 0 0);
+  background-color: var(--whiteColor);
   border-radius: 24px;
   position: relative;
   bottom: -50px;
@@ -61,7 +61,7 @@ const DiplomItemInner = styled.div`
   }
 `
 
-const CloseModalButton = styled.div`
+export const CloseModalButton = styled.div`
     width: 30px;
     height: 30px;
     position: absolute;
@@ -84,7 +84,7 @@ const CloseModalButton = styled.div`
         right: 0;
         width: 30px;
         height: 2px;
-        background-color: oklch(100% 0 0);
+        background-color: var(--whiteColor);
     };
 
     &::before{
@@ -195,54 +195,71 @@ text-align: center;
 }
 `
 
-const DiplomItem = ({ open, onClose }) => {
+const DiplomItem = ({ open, onClose, initialSlideIndex }) => {
     const diplomModal = useRef();
     const diplomItemInner = useRef();
-  
+    const swiperRef = useRef();
+    const scrollY = useRef(0);
+
     useEffect(() => {
       const handleClickOutside = (event) => {
-        if (diplomItemInner.current && !diplomItemInner.current.contains(event.target)) {
-          onClose();
-        }
+          if (diplomItemInner.current && !diplomItemInner.current.contains(event.target)) {
+              onClose();
+          }
       };
-  
+
       if (open) {
-        diplomModal.current.showModal();
-        document.body.style.overflow = 'hidden';
-        document.addEventListener('mousedown', handleClickOutside);
+          scrollY.current = window.scrollY;
+          diplomModal.current.showModal();
+          document.body.style.position = 'fixed'; 
+          document.body.style.top = `-${scrollY.current}px`; 
+          document.body.classList.add('body__locked');
+          document.addEventListener('mousedown', handleClickOutside);
+
+          if (swiperRef.current && swiperRef.current.swiper) {
+              swiperRef.current.swiper.slideTo(initialSlideIndex);
+          }
       } else {
-        diplomModal.current.close();
-        document.body.style.overflow = '';
+          diplomModal.current.close();
+          document.body.classList.remove('body__locked');
+          document.body.style.position = ''; 
+          document.body.style.top = ''; 
+          window.scrollTo(0, scrollY.current); 
       }
-  
+
       return () => {
-        document.body.style.overflow = '';
-        document.removeEventListener('mousedown', handleClickOutside);
+          document.body.classList.remove('body__locked');
+          document.body.style.position = ''; 
+          document.body.style.top = '';
+          document.removeEventListener('mousedown', handleClickOutside);
       };
-    }, [open, onClose]);
-  
+  }, [open, onClose, initialSlideIndex]);
+
     return createPortal(
-      <DiplomItemWrapper ref={diplomModal}>
-        <CloseModalButton onClick={onClose} />
-        <DiplomItemInner ref={diplomItemInner}>
-          <StyledSwiper
-            modules={[Navigation, Pagination, Keyboard, Mousewheel]}
-            spaceBetween={50}
-            slidesPerView={1}
-            navigation
-            pagination={{ clickable: true }}
-          >
-            {DiplomTexts.map((DiplomText) => (
-              <StyledSwiperSlide key={DiplomText.id}>
-                <img src={DiplomText.image} alt="" />
-                <SwiperParagraph>{DiplomText.content}</SwiperParagraph>
-              </StyledSwiperSlide>
-            ))}
-          </StyledSwiper>
-        </DiplomItemInner>
-      </DiplomItemWrapper>,
-      document.getElementById('diplom-nest')
+        <DiplomItemWrapper ref={diplomModal}>
+            <CloseModalButton onClick={onClose} />
+            <DiplomItemInner ref={diplomItemInner}>
+                <StyledSwiper
+                    ref={swiperRef}
+                    modules={[Navigation, Pagination, Keyboard, Mousewheel]}
+                    spaceBetween={50}
+                    slidesPerView={1}
+                    navigation
+                    keyboard = {true}
+                    mousewheel = {true}
+                    pagination={{ clickable: true }}
+                >
+                    {DiplomTexts.map((DiplomText, index) => (
+                        <StyledSwiperSlide key={DiplomText.id}>
+                            <img src={DiplomText.image}/>
+                            <SwiperParagraph>{DiplomText.content}</SwiperParagraph>
+                        </StyledSwiperSlide>
+                    ))}
+                </StyledSwiper>
+            </DiplomItemInner>
+        </DiplomItemWrapper>,
+        document.getElementById('diplom-nest')
     );
-  };
-  
-  export default DiplomItem;
+};
+
+export default DiplomItem;

@@ -11,7 +11,7 @@ const CoopItemWrapper = styled.div`
     width: min(49%, 565px);
     height: 230px;
     padding: 1.5em;
-    background-color: oklch(100% 0 0);
+    background-color: var(--whiteColor);
     border: 1px solid var(--borderGrey);
     border-radius: 20px;
     transition: all .2s linear;
@@ -93,7 +93,7 @@ const CooperationParagraph = styled(Paragraph)`
 `;
 
 const TimeParagraph = styled(CooperationParagraph)`
-    font-weight: 500;
+    font-weight: 600;
     color: var(--mainGreen);
 
     @media (641px <= width <= 1054px) {
@@ -150,7 +150,7 @@ export default function CooperationItem({ title, subtitle, text, price, prepay, 
                 </ContentInnerPrice>
             </CoopItemContent>
             <div className="button">
-                <CooperationButton>
+                <CooperationButton to="/Igoshina/workFormats">
                     {$isLast ? (
                         <>
                             Телеграм <TelegramIcon variant="default" />

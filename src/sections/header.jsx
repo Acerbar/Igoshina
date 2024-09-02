@@ -3,6 +3,7 @@ import ButtonElem from "../components/button";
 import { useEffect, useState, useRef} from "react";
 import TelegramIcon from "../components/telegram";
 import { Container } from "../components/section&container";
+import { Link } from "react-router-dom";
 
 const Header = styled.header`
     position: ${({$fixed}) => ($fixed ? 'fixed' : 'relative')};
@@ -26,7 +27,7 @@ const HeaderInner = styled.div`
     justify-content: space-between;
 `
 
-const Logo = styled.p`
+const Logo = styled(Link)`
     display: block;
     font-family: var(--font-family-2);
     font-weight: 500;
@@ -49,7 +50,7 @@ const Nav = styled.nav`
     }
 `;
 
-const NavItem = styled.a`
+const NavItem = styled(Link)`
     display: block;
     font-family: var(--font-family-2);
     font-size: clamp(12px, 1.2vw, 16px);
@@ -322,21 +323,25 @@ export default function HeaderElem() {
         setIsVisible((prev) => !prev);
     };
 
+    const handleClickInside = () => {
+        setIsVisible(false);
+      };
+
     return (
         <Header $fixed={isFixed}>
             <Container>
                 <HeaderInner>
-                    <Logo>Игошина Анастасия</Logo>
+                    <Logo to="/Igoshina/">Игошина Анастасия</Logo>
                     <Nav>
-                        <NavItem>Форматы работы</NavItem>
+                        <NavItem to="/Igoshina/workFormats">Форматы работы</NavItem>
                         <SubmenuWrapper style={{ height: "60px" }}>Инфопродукты<Triangle/>
                             <Submenu>
-                                <NavItem>Сборники рецептов</NavItem>
+                                <NavItem to="/Igoshina/products">Сборники рецептов</NavItem>
                                 <NavItem>Методички / Шпаргалки</NavItem>
                             </Submenu>
                         </SubmenuWrapper>
-                        <NavItem>Обо мне</NavItem>
-                        <NavItem>Контакты</NavItem>
+                        <NavItem to="/Igoshina/about">Обо мне</NavItem>
+                        <NavItem to="/Igoshina/contacts">Контакты</NavItem>
                     </Nav>
                     <BurgerMenu>
                         <BurgerIcon ref={burgerIconRef} onClick={toggleBurgerNav}>
@@ -345,26 +350,26 @@ export default function HeaderElem() {
                         <BurgerNav  $visible={isVisible}>
                             <BurgerNavInner ref={burgerNavRef}>
                                 <BurgerNavContent>
-                                    <Logo style={{marginBottom: "30px"}}>Игошина Анастасия</Logo>
-                                    <NavItemBurger>Форматы работы</NavItemBurger>
+                                    <Logo to="/Igoshina/" style={{marginBottom: "30px"}} onClick={handleClickInside}>Игошина Анастасия</Logo>
+                                    <NavItemBurger to="/Igoshina/workFormats" onClick={handleClickInside}>Форматы работы</NavItemBurger>
                                     <SubmenuWrapper $visible={isVisible}>
                                         <SubmenuInner>Инфопродукты<Triangle/>
                                         </SubmenuInner>
                                         <SubmenuBurger>
-                                            <NavItem style={{margin: "6px 0"}}>Сборники рецептов</NavItem>
-                                            <NavItem>Методички / Шпаргалки</NavItem>
+                                            <NavItem to="/Igoshina/products" style={{margin: "6px 0"}} onClick={handleClickInside}>Сборники рецептов</NavItem>
+                                            <NavItem onClick={handleClickInside}>Методички / Шпаргалки</NavItem>
                                         </SubmenuBurger>
                                     </SubmenuWrapper>
-                                    <NavItemBurger>Обо мне</NavItemBurger>
-                                    <NavItemBurger>Контакты</NavItemBurger>
+                                    <NavItemBurger to="/Igoshina/about" onClick={handleClickInside}>Обо мне</NavItemBurger>
+                                    <NavItemBurger to="/Igoshina/contacts" onClick={handleClickInside}>Контакты</NavItemBurger>
                                 </BurgerNavContent>
-                                <ButtonElem style={{alignSelf: "center"}}>Связаться со мной
+                                <ButtonElem to="/Igoshina/contacts" style={{alignSelf: "center"}} onClick={handleClickInside}>Связаться со мной
                                         <TelegramIcon variant="default" />
                                 </ButtonElem>
                             </BurgerNavInner>
                         </BurgerNav>
                     </BurgerMenu>
-                    <HeaderButton>Связаться со мной
+                    <HeaderButton to="/Igoshina/contacts">Связаться со мной
                             <TelegramIcon  variant="default"/>
                     </HeaderButton>
                 </HeaderInner>
