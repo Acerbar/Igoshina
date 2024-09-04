@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Paragraph } from "./Texts";
+import { breakpoints } from "./breakpoints";
 
 const PrefItemWrapper = styled.div`
 display: flex;
@@ -9,11 +10,11 @@ padding: 1.4em 0;
 gap: 1.3em;
 border-bottom: 1px solid var(--borderGrey);
 
-@media(width<=960px){
+@media (width <= ${breakpoints.tablet}){
     width: 100%;
 }
 
-@media(width<=640px){
+@media (width <= ${breakpoints.mobile}){
     padding: 0.8em 0;
 }
 `

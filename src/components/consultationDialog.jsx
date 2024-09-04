@@ -4,16 +4,17 @@ import styled from 'styled-components';
 import { workTextsOne } from "../JS/workTexts";
 import { DiplomItemWrapper, CloseModalButton, DiplomItemInner } from "./diplomDialog";
 import WorkItem from "./WorkItem";
+import { breakpoints } from "./breakpoints";
 
 const ConsultationItemInner = styled(DiplomItemInner)`
 padding: 3em;
-@media(width <= 960px){
+@media (width <= ${breakpoints.tablet}) {
     padding: 2em;
 }
-@media(width <= 640px){
+@media (width <= ${breakpoints.mobile}){
     padding: 1.5em;
 }
-@media(width <= 320px){
+@media (width <= ${breakpoints.extraSmallMobile}){
     padding: 1em;
 }
 `
@@ -34,7 +35,7 @@ const ConsultationDialog = ({ open, onClose }) => {
         if (open) {
             scrollY.current = window.scrollY;
             consultationModal.current.showModal();
-            document.body.style.position = 'fixed'; 
+            document.getElementById("header").style.visibility = "hidden";
             document.body.style.top = `-${scrollY.current}px`; 
             document.body.classList.add('body__locked');
             document.addEventListener('mousedown', handleClickOutside);
@@ -43,14 +44,16 @@ const ConsultationDialog = ({ open, onClose }) => {
             consultationModal.current.close();
             document.body.classList.remove('body__locked');
             document.body.style.position = ''; 
-            document.body.style.top = ''; 
+            document.body.style.top = '';
+            document.getElementById("header").style.visibility = "visible";
             window.scrollTo(0, scrollY.current); 
         }
 
         return () => {
-          document.body.classList.remove('body__locked');
-          document.body.style.position = ''; 
-          document.body.style.top = '';
+            document.body.classList.remove('body__locked');
+            document.body.style.position = ''; 
+            document.body.style.top = '';
+            document.getElementById("header").style.visibility = "visible";
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [open, onClose]);

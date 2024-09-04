@@ -5,11 +5,16 @@ import MainSection from "../sections/intro";
 import PrefSection from "../sections/prefs";
 import TelegramChannelSection from "../sections/telegramChannel";
 import ContactsSection from "../sections/contacts";
+import { Helmet } from "react-helmet-async";
 
 
 export default function MainPage(){
     return(
-        <>
+            <>
+            <Helmet>
+                <title>Главная</title>
+                <meta name="description" content="Домашняя страница" />
+            </Helmet>
             <MainSection/>
             <PrefSection/>
             <CooperationSection/>
@@ -17,6 +22,6 @@ export default function MainPage(){
             <EducationSection/>
             <TelegramChannelSection/>
             <ContactsSection/>
-        </>
+            </>
     )
 }

@@ -4,14 +4,15 @@ import ButtonElem from "../components/button";
 import Image from "../components/Images";
 import TelegramIcon from "../components/telegram";
 import { Section, Container } from "../components/section&container";
+import { breakpoints } from "../components/breakpoints";
 
 const IntroWrapper = styled(Section)`
 
-@media(width<=640px){
+@media (width <= ${breakpoints.mobile}){
     flex-direction: column-reverse;
 }
 
-@media(width<=320px){
+@media (width <= ${breakpoints.extraSmallMobile}){
 }
 `
 
@@ -21,7 +22,7 @@ flex-direction: column;
 justify-content: center;
 width: 54%;
 
-@media(width<=640px){
+@media (width <= ${breakpoints.mobile}){
     width: 100%;
 }
 
@@ -30,7 +31,7 @@ const IntroParagraph = styled(Paragraph)`
     margin: 20px 0 30px;
     width: 80%;
 
-    @media(width <= 320px){
+    @media (width <= ${breakpoints.extraSmallMobile}){
         width: 93%;
     }
 `
@@ -43,11 +44,12 @@ width: 46%;
     height: 100%;
     object-fit: cover;
 }
-@media(width<=640px){
-    border-radius: 20px;
+@media (width <= ${breakpoints.mobile}){
     width: 100%;
     & > img{
-        height: calc(380px - (90 * ((640px - 100vw) / 320)));
+        border-radius: 20px;
+        aspect-ratio: 3 / 2;
+        // height: calc(380px - (90 * ((640px - 100vw) / 320)));
         transition: height 0.3s ease-in-out;
     }
 }
@@ -59,10 +61,10 @@ const IntroButton = styled(ButtonElem)`
     font-size: 20px;
     min-width: 290px;
 
-    @media(width<=640px){
+    @media (width <= ${breakpoints.mobile}){
         font-size: clamp(14px, 4vw, 20px);
     }
-    @media(width<=430px){
+    @media (width <= ${breakpoints.smallMobile}){
         align-self: center;
     }
 `
@@ -77,7 +79,7 @@ export default function MainSection(){
                     <IntroParagraph>Докажу, что здоровый образ жизни — это легко и вкусно!
                                 Научу заботиться о себе в рамках ваших возможностей
                     </IntroParagraph>
-                    <IntroButton isColored to="/Igoshina/contacts">Связаться со мной
+                    <IntroButton isColored>Связаться со мной
                         <TelegramIcon variant="light" />  
                     </IntroButton>
                 </IntroContent>

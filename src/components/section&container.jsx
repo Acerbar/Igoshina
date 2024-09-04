@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { breakpoints } from "./breakpoints"
 
 const SectionItem = styled.div`
 display: flex;
@@ -8,15 +9,17 @@ width: 100%;
 gap: 2em;
 padding: 50px 20px;
 
-@media(width<=960px){
+@media (width <= ${breakpoints.tablet}){
     padding:40px 0;
 }
 
-@media(width<=640px){
+@media (width <= ${breakpoints.mobile}){
     flex-direction: column;
-    padding: 20px 0;
+    padding: 30px 0;
 }
-
+@media (width <= ${breakpoints.smallMobile}){
+    padding: 15px 0;
+}
 `
 
 const ContainerItem = styled.div`
@@ -29,13 +32,6 @@ const ContainerItem = styled.div`
 
     @media (width <= 1080px){
         width: 100%;
-        padding: 0 40px;
-    }
-    @media(width <= 660px){
-        padding: 0 20px;
-    }
-    @media(width <= 320px){
-        padding: 0 15px;
     }
 `
 

@@ -4,18 +4,15 @@ import Image from "../components/Images";
 import { Paragraph, TitleH3 } from "../components/Texts";
 import { useState, useRef } from "react";
 import {Container } from "../components/section&container";
+import { breakpoints } from "../components/breakpoints";
 // import ErrorItem from "../components/errorDialog";
 
 export const ContactsContainer = styled(Container)`
 margin: 0 auto;
 
-@media(width<=960px){
-    padding: 0 10px;
-}
+@media (width <= ${breakpoints.tablet}){
+    padding: 0;
 
-@media(width<=892px){
-    padding: 0 20px;
-}
 `
 
 const ContactsInner = styled.div`
@@ -61,8 +58,8 @@ z-index: 1;
     }
   }
 
-  @media(width<=640px){
-    padding: 30px 0;
+  @media (width <= ${breakpoints.mobile}){
+    padding: 80px 0;
   }
 `
 
@@ -77,11 +74,11 @@ const Mailout = styled.div`
     overflow: hidden;
     margin-top: 50px;
 
-    @media(width<=892px){
+    @media (width <= ${breakpoints.smallTablet}){
         flex-direction: column;
     }
 
-    @media(width <=320px){
+    @media (width <= ${breakpoints.extraSmallMobile}){
         border-radius: 14px;
     }
 `
@@ -92,15 +89,15 @@ const MailoutImage = styled.div`
         height: 100%;
         object-fit: cover;
 
-        @media(width <= 892px){
-            aspect-ratio: 1.45 / 1;
+        @media (width <= ${breakpoints.smallTablet}){
+            aspect-ratio: 2 / 1;
             object-position: 0% 20%;
-            height: clamp(220px, 47vw, 350px);
+            // height: clamp(220px, 47vw, 350px);
         }
 
         }
 
-        @media(width <= 892px){
+        @media (width <= ${breakpoints.smallTablet}){
             width: 100%;
 `
 const MailoutContent = styled.div`
@@ -115,12 +112,12 @@ const MailoutContent = styled.div`
         padding: 2em 2em 0 2em;
     }
 
-    @media(width<=892px){
+    @media (width <= ${breakpoints.smallTablet}){
         width: 100%;
         padding: 0 2em;
     }
 
-    @media(width<=640px) {
+    @media (width <= ${breakpoints.mobile}) {
         padding: 0 1em;
     }
 
@@ -130,11 +127,11 @@ const ContactButton = styled(ButtonElem)`
     width: 23%;
     transition: all .2s linear;
 
-    @media(width<=640px){
+    @media (width <= ${breakpoints.mobile}){
         width: clamp(150px, 44vw, 290px);
     }
 
-    @media(width<=500px){
+    @media (width <= ${breakpoints.smallMobile}){
         width: 290px;
         margin: 0 auto;
     }
@@ -151,20 +148,19 @@ const MailoutFormWrapper = styled.div`
     align-items: center;
     gap:.7em;
 
-    @media(width<=500px){
+    @media (width <= ${breakpoints.smallMobile}){
         flex-direction: column;
     }
 `
 const Input = styled.input`
     display: flex;
-    flex: 1 1 auto;
-    width: clamp(245px, 23vw, 360px);
+    width: clamp(220px, 23vw, 360px);
     padding: .8em 1.5em;
     border: 1px solid var(--borderGreen);
     border-radius: 51px;
     font-size: 16px;
 
-    @media(width <=892px){
+    @media (width <= ${breakpoints.smallTablet}){
         width: clamp(250px, 47vw, 380px);
     }
 
@@ -195,11 +191,11 @@ const SubmitButton = styled.div`
         background-color: oklch(54.36% 0.113 128.95);
     }
 
-    @media(width<=490px){
+    @media (width <= ${breakpoints.smallMobile}){
         width: 250px;
     }
 
-    @media(width<=320px){
+    @media (width <= ${breakpoints.extraSmallMobile}){
         font-size: 14px;
     }
 `
@@ -208,7 +204,7 @@ margin: 1.5em 0;
 font-size: 12px; 
 color: var(--greyText);
 
-@media(width<=892px){
+@media (width <= ${breakpoints.smallTablet}){
     margin: 1em 0;
 }
 `

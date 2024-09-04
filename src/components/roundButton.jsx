@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoints } from "./breakpoints";
 
 const RoundButton = styled.button`
     display: flex;
@@ -23,7 +24,7 @@ const RoundButton = styled.button`
         border-color: var(--focusBorderColor); /* Optional: customize focus border color */
     }
 
-    @media (max-width: 960px) {
+    @media (width <= ${breakpoints.tablet}) {
         width: 40px;
         height: 40px;
     }
@@ -35,7 +36,7 @@ const Minus = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 2;
+    z-index: 1;
     background-color: var(--mainGreen);
     transform: translate(-50%, -50%);
 
@@ -59,7 +60,7 @@ const Minus = styled.div`
         }
     `}
 
-    @media (max-width: 960px) {
+    @media (width <= ${breakpoints.tablet}) {
         width: 11px;
     }
 `;

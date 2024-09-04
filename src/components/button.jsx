@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { breakpoints } from "./breakpoints";
 
 const Button = styled(Link)`
     display: flex;
@@ -28,7 +29,7 @@ const Button = styled(Link)`
         background-color: oklch(54.36% 0.113 128.95);
     }
 
-    @media(width<=320px){
+    @media (width <= ${breakpoints.extraSmallMobile}){
         font-size: 14px;
     }
 

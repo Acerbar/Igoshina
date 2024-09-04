@@ -29,20 +29,11 @@ function AppRoutes() {
       <Route path='/Igoshina/workFormats' element={<WorkFormatsPage/> }/>
       <Route path='/Igoshina/products' element={<ProductsSection/> }/>
       <Route path='/Igoshina/contacts' element={<ContactsPage/> }/>
-      <Route path="*" element={<NotFoundPage />} /> {/* Handle 404 */}
+      {/* <Route path='/Igoshina/productDetails' element={<ProductDetails/> }/> */}
+      <Route path="/Igoshina/productDetails/:productId" element={<ProductDetailsPage />} />
     </Routes>
   );
 }
 
-function NotFoundPage() {
-  return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>404 - Not Found</h1>
-      <p>Такая страница не существует.
-      </p>
-      <Link to="/Igoshina/">Домой</Link>
-    </div>
-  );
-}
 
 export default App

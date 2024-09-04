@@ -10,6 +10,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { DiplomTexts } from '../JS/diplomTexts';
 import { Paragraph } from './Texts';
+import { breakpoints } from "./breakpoints";
 
 export const DiplomItemWrapper = styled.dialog`
   width: 770px;
@@ -29,7 +30,7 @@ export const DiplomItemWrapper = styled.dialog`
     background-color: oklch(0% 0 0 / 40%);
   }
 
-  @media(width<=892px){
+  @media (width <= ${breakpoints.smallTablet}){
     width: clamp(300px, 90vw, 720px);
 
   }
@@ -46,17 +47,17 @@ export const DiplomItemInner = styled.div`
   bottom: -50px;
   position: relative;
 
-  @media(width<=892px){
+  @media (width <= ${breakpoints.smallTablet}){
     width: 100%;
     padding: 20px 0 10px;
     border-radius: 20px;
   }
 
-  @media(width<=639px){
+  @media (width <= ${breakpoints.mobile}){
     padding: 0;
   }
 
-  @media(width<=500px){
+  @media (width <= ${breakpoints.smallMobile}){
     padding: 0;
   }
 `
@@ -69,7 +70,7 @@ export const CloseModalButton = styled.div`
     right: 0;
     cursor: pointer;
 
-    @media(width<=892px){
+    @media (width <= ${breakpoints.smallTablet}){
         top: 0;
         right: 1%;
 
@@ -105,19 +106,19 @@ height: 100%;
     border: 1px solid var(--borderGreen);
     border-radius: 50%;
 
-    @media(width<=500px){
+    @media (width <= ${breakpoints.smallMobile}){
         display: none;
     }
   }
   .swiper-button-next{
-    @media(width<=640px){
+    @media (width <= ${breakpoints.mobile}){
         right: 5px;
     }
 }
 
 
 .swiper-button-prev{
-    @media(width<=640px){
+  @media (width <= ${breakpoints.mobile}){
         left: 5px;
     }
   }
@@ -141,7 +142,7 @@ height: 100%;
   }
 
   .swiper-pagination{
-    @media(width <= 499px){
+    @media (width <= ${breakpoints.smallMobile}){
         top: calc(210px + (280 - 210) * ((100vw - 320px) / (499 - 320)));
     }
   }
@@ -164,13 +165,11 @@ const StyledSwiperSlide = styled(SwiperSlide)`
     margin: 0 auto;
     object-fit: contain;
 
-    @media(320px <= width <=960px){
+    @media (width <= ${breakpoints.tablet}){
         width: clamp(280px, 74vw, 560px);
     }
-    @media(width<=350px){
+    @media (width <= ${breakpoints. extraSmallMobile}){
         border-radius: 20px 20px 0 0;
-    }
-    @media(width<=320px){
         width: 280px;
     }
   }
@@ -183,83 +182,86 @@ margin: 3% auto 5%;
 font-size: 14px;
 text-align: center;
 
-@media(width<=892px){
+@media (width <= ${breakpoints.smallTablet}){
     width: 75%;
 }
-@media(width<=640px){
+@media (width <= ${breakpoints.mobile}){
     margin-bottom: 7%;
 }
-@media(width<=500px){
+@media (width <= ${breakpoints.smallMobile}){
     width: 90%;
     margin: 12% auto 5%;
 }
 `
 
 const DiplomItem = ({ open, onClose, initialSlideIndex }) => {
-    const diplomModal = useRef();
-    const diplomItemInner = useRef();
-    const swiperRef = useRef();
-    const scrollY = useRef(0);
+  const diplomModal = useRef();
+  const diplomItemInner = useRef();
+  const swiperRef = useRef();
+  const scrollY = useRef(0);
 
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-          if (diplomItemInner.current && !diplomItemInner.current.contains(event.target)) {
-              onClose();
-          }
-      };
-
-      if (open) {
-          scrollY.current = window.scrollY;
-          diplomModal.current.showModal();
-          document.body.style.position = 'fixed'; 
-          document.body.style.top = `-${scrollY.current}px`; 
-          document.body.classList.add('body__locked');
-          document.addEventListener('mousedown', handleClickOutside);
-
-          if (swiperRef.current && swiperRef.current.swiper) {
-              swiperRef.current.swiper.slideTo(initialSlideIndex);
-          }
-      } else {
-          diplomModal.current.close();
-          document.body.classList.remove('body__locked');
-          document.body.style.position = ''; 
-          document.body.style.top = ''; 
-          window.scrollTo(0, scrollY.current); 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (diplomItemInner.current && !diplomItemInner.current.contains(event.target)) {
+        onClose();
       }
+    };
 
-      return () => {
-          document.body.classList.remove('body__locked');
-          document.body.style.position = ''; 
-          document.body.style.top = '';
-          document.removeEventListener('mousedown', handleClickOutside);
-      };
+    if (open) {
+      scrollY.current = window.scrollY;
+      diplomModal.current.showModal();
+      document.getElementById("header").style.visibility = "hidden";
+      document.body.style.position = 'fixed'; 
+      document.body.style.top = `-${scrollY.current}px`; 
+      document.body.classList.add('body__locked');
+      document.addEventListener('mousedown', handleClickOutside);
+
+      if (swiperRef.current && swiperRef.current.swiper) {
+        swiperRef.current.swiper.slideTo(initialSlideIndex);
+      }
+    } else {
+      diplomModal.current.close();
+      document.getElementById("header").style.visibility = "visible";
+      document.body.classList.remove('body__locked');
+      document.body.style.position = ''; 
+      document.body.style.top = ''; 
+      window.scrollTo(0, scrollY.current); 
+    }
+
+    return () => {
+      document.body.classList.remove('body__locked');
+      document.body.style.position = ''; 
+      document.body.style.top = '';
+      document.getElementById("header").style.visibility = "visible";
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, [open, onClose, initialSlideIndex]);
 
-    return createPortal(
-        <DiplomItemWrapper ref={diplomModal}>
-            <CloseModalButton onClick={onClose} />
-            <DiplomItemInner ref={diplomItemInner}>
-                <StyledSwiper
-                    ref={swiperRef}
-                    modules={[Navigation, Pagination, Keyboard, Mousewheel]}
-                    spaceBetween={50}
-                    slidesPerView={1}
-                    navigation
-                    keyboard = {true}
-                    mousewheel = {true}
-                    pagination={{ clickable: true }}
-                >
-                    {DiplomTexts.map((DiplomText, index) => (
-                        <StyledSwiperSlide key={DiplomText.id}>
-                            <img src={DiplomText.image}/>
-                            <SwiperParagraph>{DiplomText.content}</SwiperParagraph>
-                        </StyledSwiperSlide>
-                    ))}
-                </StyledSwiper>
-            </DiplomItemInner>
-        </DiplomItemWrapper>,
-        document.getElementById('diplom-nest')
-    );
+  return createPortal(
+    <DiplomItemWrapper ref={diplomModal}>
+      <CloseModalButton onClick={onClose} />
+      <DiplomItemInner ref={diplomItemInner}>
+        <StyledSwiper
+          ref={swiperRef}
+          modules={[Navigation, Pagination, Keyboard, Mousewheel]}
+          spaceBetween={50}
+          slidesPerView={1}
+          navigation
+          keyboard={true}
+          mousewheel={true}
+          pagination={{ clickable: true }}
+        >
+          {DiplomTexts.map((DiplomText, index) => (
+            <StyledSwiperSlide key={DiplomText.id}>
+              <img src={DiplomText.image} />
+              <SwiperParagraph>{DiplomText.content}</SwiperParagraph>
+            </StyledSwiperSlide>
+          ))}
+        </StyledSwiper>
+      </DiplomItemInner>
+    </DiplomItemWrapper>,
+    document.getElementById('diplom-nest')
+  );
 };
 
 export default DiplomItem;

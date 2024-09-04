@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { TitleH5 } from "./Texts";
 import ButtonElem from "./button";
+import { useNavigate } from "react-router-dom";
+import { breakpoints } from "./breakpoints";
 
 const ProductItemWrapper = styled.div`
     display: flex;
@@ -11,14 +13,15 @@ const ProductItemWrapper = styled.div`
     border-radius: 20px;
     overflow: hidden;
     
-    @media(width <=320px){
+    @media (width <= ${breakpoints.extraSmallMobile}){
         border-radius: 14px;
     }
 `;
 
 const ProductItemImage = styled.img`
-    height: 55%;
+    width: 100%;
     max-height: 270px;
+    aspect-ratio: 1.4 / 1;
     object-fit: cover;
 `;
 
@@ -34,7 +37,7 @@ const ProductItemTitle = styled(TitleH5)`
     flex-grow: 1;
     height: fit-content;
 
-    @media(width <= 640px){
+    @media (width <= ${breakpoints.mobile}){
         font-size: 18px;
     }
 `;
@@ -43,7 +46,7 @@ const ProductItemButton = styled(ButtonElem)`
     width: 100%;
     margin: 1.5em auto;
 
-    @media(width <= 320px){
+    @media (width <= ${breakpoints.extraSmallMobile}){
         font-size: 14px;
     }
 `;
@@ -56,25 +59,35 @@ const ProductItemLink = styled.a`
     font-family: var(--font-family-2);
     font-size: 16px;
     line-height: 1.5em;
+    cursor: pointer;
 
     &:hover {
         color: var(--mainGreenHovered);
     }
 
-    @media (width <= 320px) {
+    @media (width <= ${breakpoints.extraSmallMobile}){
         font-size: 14px;
     }
 `;
 
-export default function ProductItem({ id, image, title, price, details }) {
+
+
+export default function ProductItem({ id, image, title, price, details, onLinkClick }) {
+    const navigate = useNavigate();
+    const handleLinkClick = () => {
+        navigate(`/Igoshina/productDetails/${id}`);
+        window.scrollTo(0, 0);
+    };
+
     return (
         <ProductItemWrapper>
             <ProductItemImage src={image} />
             <ProductItemContent>
                 <ProductItemTitle>{title}</ProductItemTitle>
                 <ProductItemButton isColored>Купить — {price}</ProductItemButton>
-                <ProductItemLink>{details}</ProductItemLink>
+                <ProductItemLink onClick={handleLinkClick}>{details}</ProductItemLink>
             </ProductItemContent>
         </ProductItemWrapper>
     );
 }
+

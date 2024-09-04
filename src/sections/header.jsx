@@ -4,19 +4,23 @@ import { useEffect, useState, useRef} from "react";
 import TelegramIcon from "../components/telegram";
 import { Container } from "../components/section&container";
 import { Link } from "react-router-dom";
+import { breakpoints } from "../components/breakpoints";
 
 const Header = styled.header`
-    position: ${({$fixed}) => ($fixed ? 'fixed' : 'relative')};
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: ${({$fixed}) => ($fixed ? '5' : '2')};
+    z-index: 10;
     width: 100%;
     padding: 10px 0;
-    border-bottom: ${({$fixed}) => ($fixed ? '1px solid var(--borderGrey)' : '')};
-    background-color: ${({$fixed}) => ($fixed ? 'var(--backgroundColor)' : '')};
+    border-bottom: ${({ $fixed }) => ($fixed ? '1px solid var(--borderGrey)' : '')};
+    background-color: ${({ $fixed }) => ($fixed ? 'var(--backgroundColor)' : '')};
 
-    @media(width <= 960px){
-       padding: 15px 0;
+    @media (width <= ${breakpoints.tablet}){
+        padding: 15px 40px;
+    }
+    @media (width <= ${breakpoints.mobile}){
+        padding: 15px 20px;
     }
 `;
 
@@ -25,6 +29,13 @@ const HeaderInner = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    
+    @media (${breakpoints.tablet}  <= width <= 1080px){
+        padding: 0 60px;
+    }
+    @media (width <= ${breakpoints.tablet}){
+        padding: 0;
+    }
 `
 
 const Logo = styled(Link)`
@@ -32,9 +43,9 @@ const Logo = styled(Link)`
     font-family: var(--font-family-2);
     font-weight: 500;
     font-size: 24px;
-    color: var(--secondaryText);
+    color: ${({$visible}) => ($visible ? "transparent" : "var(--secondaryText)")};
 
-    @media(width <= 640px){
+    @media (width <= ${breakpoints.mobile}){
         font-size: clamp(14.5px, 3.8vw, 24px);
         
     }
@@ -45,7 +56,7 @@ const Nav = styled.nav`
     align-items: center;
     gap: 1.4em;
 
-    @media(width <= 960px){
+    @media (width <= ${breakpoints.tablet}){
         display: none;
     }
 `;
@@ -64,7 +75,7 @@ const NavItem = styled(Link)`
         color: var(--blackText);
     }
 
-    @media(width<=960px){
+    @media (width <= ${breakpoints.tablet}){
         font-size: 16px;
     }
 `;
@@ -105,7 +116,6 @@ const Submenu = styled.div`
         position: absolute;
         top: -17%;
         left: 50%;
-        z-index: 2;
         border: solid var(--borderGrey);
         border-width: 0 1px 1px 0;
         padding: 7px;
@@ -177,7 +187,8 @@ font-weight: 600;
 const BurgerMenu = styled.div`
     display: none;
 
-    @media(width <= 960px){
+
+    @media (width <= ${breakpoints.tablet}){
         display: block;
     }
 `;
@@ -188,7 +199,7 @@ const BurgerIcon = styled.div`
     height: 24px;
     position: relative;
 
-    @media(width <=640px){
+    @media (width <= ${breakpoints.mobile}){
         width: 20px;
         height: 20px;
     }
@@ -201,7 +212,6 @@ const BurgerSpan = styled.span`
     border-radius: 2px;
     font-size: 0;
     position: relative;
-    z-index: 25;
     transition: all .1s linear;
     top: 10px;
 
@@ -214,17 +224,18 @@ const BurgerSpan = styled.span`
     border-radius: 2px;
     position: absolute;
     left: 0;
+    z-index: 10;
     transition: transform .1s linear;
 }
 
     &::before {
         top: ${({$visible}) => ($visible ? "50%" : "8px")};
-        transform: ${({$visible}) => ($visible ? "rotate(-45deg) translateY(-70%)" : "0")};
+        transform: ${({$visible}) => ($visible ? "rotate(-45deg) translateY(-70%)" : "")};
     }
 
     &::after {
         bottom: ${({$visible}) => ($visible ? "50%" : "8px")};
-        transform: ${({$visible}) => ($visible ? "rotate(45deg) translateY(70%)" : "0")};
+        transform: ${({$visible}) => ($visible ? "rotate(45deg) translateY(70%)" : "")};
     }
 `;
 
@@ -236,13 +247,13 @@ width: 100vw;
 height: 100dvh;
 position: fixed;
 top: 0;
-right: 0; 
+right: 0;
 overflow: hidden;
 background-color: oklch(0% 0 0 / 40%);
 transform: translateX(${({$visible}) => ($visible ? '0' : '250%')});
 transition: transform 0.3s linear;
 
-@media(width <=430px){
+@media (width <= ${breakpoints.smallMobile}){
     width: 100%;
 }
 `;
@@ -261,7 +272,7 @@ width: 320px;
 height: 100%;
 overflow: hidden;
 
-@media(width <=430px){
+@media (width <= ${breakpoints.smallMobile}){
     width: 100%;
 }
 `
@@ -275,12 +286,12 @@ const HeaderButton = styled(ButtonElem)`
 
     font-size: clamp(12px, 1.2vw, 16px);
 
-    @media(width <= 960px){
+    @media (width <= ${breakpoints.tablet}){
         display: none;
     }
 `
 
-export default function HeaderElem() {
+export default function HeaderElem({ isModalOpen }) {
     const [isFixed, setIsFixed] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const burgerNavRef = useRef(null);
@@ -313,9 +324,15 @@ export default function HeaderElem() {
 
     useEffect(() => {
         if (isVisible) {
+            const scrollY = window.scrollY;
+            document.body.style.top = `-${scrollY}px`;
             document.body.classList.add('body__locked');
         } else {
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '';
             document.body.classList.remove('body__locked');
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
         }
     }, [isVisible]);
 
@@ -325,13 +342,13 @@ export default function HeaderElem() {
 
     const handleClickInside = () => {
         setIsVisible(false);
-      };
+    };
 
     return (
-        <Header $fixed={isFixed}>
+        <Header $fixed={isFixed} id="header">
             <Container>
                 <HeaderInner>
-                    <Logo to="/Igoshina/">Игошина Анастасия</Logo>
+                    <Logo $visible={isVisible} to="/Igoshina/">Игошина Анастасия</Logo>
                     <Nav>
                         <NavItem to="/Igoshina/workFormats">Форматы работы</NavItem>
                         <SubmenuWrapper style={{ height: "60px" }}>Инфопродукты<Triangle/>
@@ -350,7 +367,7 @@ export default function HeaderElem() {
                         <BurgerNav  $visible={isVisible}>
                             <BurgerNavInner ref={burgerNavRef}>
                                 <BurgerNavContent>
-                                    <Logo to="/Igoshina/" style={{marginBottom: "30px"}} onClick={handleClickInside}>Игошина Анастасия</Logo>
+                                    <Logo to="/Igoshina/" style={{marginBottom: "30px", fontSize: "20px"}} onClick={handleClickInside}>Игошина Анастасия</Logo>
                                     <NavItemBurger to="/Igoshina/workFormats" onClick={handleClickInside}>Форматы работы</NavItemBurger>
                                     <SubmenuWrapper $visible={isVisible}>
                                         <SubmenuInner>Инфопродукты<Triangle/>

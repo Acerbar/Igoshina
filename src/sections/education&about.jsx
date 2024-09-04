@@ -5,44 +5,47 @@ import {EducationItem} from "../components/educationItem";
 import { educationTexts } from "../JS/educationTexts";
 import ButtonElem from "../components/button";
 import {Section} from "../components/section&container";
+import { breakpoints } from "../components/breakpoints";
 
-const EducationInner = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 3em;
-    background-color: var(--whiteColor);
-    border-radius: 60px;
-    gap: 2em;
-    max-width: 1240px;
-    margin: 0px auto;
 
-    @media(width <=960px){
-        margin: 0px 10px;
-        padding: 2em;
-    }
+  const EducationInner = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3em;
+  background-color: var(--whiteColor);
+  border-radius: 60px;
+  gap: 2em;
+  max-width: 1240px;
+  margin: 0 auto;
 
-    @media(width <=892px){
-        flex-direction: column;
-        margin: 25px 20px 0;
-        border-radius: 45px;
-    }
-    @media(width <=640px){
-        padding: 1em;
-    }
-    @media(width <= 320px){
-        margin: 25px 15px 0;
-        padding: 0.7em;
-        border-radius: 15px;
-    }
-`
+  @media (width <= ${breakpoints.tablet}) {
+    padding: 2em;
+    border-radius: 40px;
+  }
+
+  @media (width <= ${breakpoints.smallTablet}) {
+    flex-direction: column;
+    margin-top: 25px;
+  }
+
+  @media (width <= ${breakpoints.mobile}) {
+    padding: 1em;
+  }
+
+  @media (width <= ${breakpoints.smallMobile}) {
+    padding: 0.7em;
+    border-radius: 14px;
+  }
+`;
+
 export const EducationText = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 50%;
 
-    @media(width <= 892px){
+    @media(width <= ${breakpoints.smallTablet}){
         width: 100%;
     }
 `
@@ -51,44 +54,43 @@ margin: .5em 0;
 `
 
 export const EducationPhoto = styled.div`
-    width: 45%;
+width: 45%;
 
-    & > img{
-        border-radius: 30px;
-        height: 100%;
-        object-fit: cover;
+img {
+  border-radius: 40px;
+  height: 100%;
+  object-fit: cover;
 
-        @media(width <= 892px){
-            aspect-ratio: 1.45 / 1;
-            object-position: 0% 20%;
-            height: clamp(203px, 58vw, 430px);
-        }
+  @media (width <= ${breakpoints.smallTablet}) {
+    aspect-ratio: 3 / 2;
+    object-position: 0% 20%;
+    border-radius: 20px;
+  }
 
-    }
+  @media (width <= ${breakpoints.smallMobile}) {
+    border-radius: 8px;
+  }
+}
 
-    @media(width <= 892px){
-        width: 100%;
-    }
+@media (width <= ${breakpoints.smallTablet}) {
+  width: 100%;
+}
 `
 
 export const EducationParagraph = styled(Paragraph)`
-    @media(width <= 960px){
-        font-size: 14px;
-    }
+@media (width <= ${breakpoints.tablet}) {
+    font-size: 14px;
+  }
 
-    @media(width <= 862px){
-        width: 90%;
-    }
-
-  
+  @media (width <= ${breakpoints.smallTablet}) {
+    width: 90%;
+  }
 `
 export const EducationButton = styled(ButtonElem)`
     margin-top: 30px;
-    @media(width<=430px){
-    align-self: center;
-    @media(width<=960px){
-        
-    }
+    @media (width <= ${breakpoints.smallMobile}) {
+        align-self: center;
+      }
 }
 
 `
@@ -115,24 +117,22 @@ export function EducationSection(){
 }
 
 const AboutInner = styled(EducationInner)`
-height: 594px;
-margin-top: 10px;
+  height: 594px;
+  margin-top: 10px;
+  width: 100%;
 
-@media(width<= 960px){
-    height: 500px;
-}
-@media(width<= 892px){
+  @media (width <= ${breakpoints.tablet}) {
     height: fit-content;
-}
+  }
 
-@media(width<= 500px){
+  @media (width <= ${breakpoints.smallMobile}) {
     padding: 0;
-}
+  }
 `
 const AboutPhoto = styled(EducationPhoto)`
 
 & > img{
-    @media(width<=500px){
+    @media (width <= ${breakpoints.smallMobile}){
         border-radius: 20px 20px 0 0;
     }
 }
@@ -143,7 +143,7 @@ gap: 16px;
 padding: 0 1em 1em;
 `
 const AboutParagraph = styled(EducationParagraph)`
-@media(width<=960px){
+@media (width <= ${breakpoints.tablet}){
     font-size: clamp(14px, 2vw, 16px);
 }
 `
@@ -153,7 +153,7 @@ const ButtonsBlock = styled.div`
     flex-direction: row;
     gap: 15px;
 
-    @media(width<=500px){
+    @media (width <= ${breakpoints.smallMobile}){
         padding: 20px 0;
         flex-direction: column;
         align-items: center;
@@ -161,21 +161,21 @@ const ButtonsBlock = styled.div`
     }
 `
 const EducationButtonStyled = styled(EducationButton)`
-    width: 155px;
+width: 155px;
 
-    &:hover{
-        background-color: var(--mainGreen);
-        color: var(--whiteColor);
-    }
+&:hover {
+  background-color: var(--mainGreen);
+  color: var(--whiteColor);
+}
 
-    @media(width <= 960px){
-        width: 133px;
-    }
-    
-    @media(width<=500px){
-        width: 250px;
-        margin-top: 0;
-    }
+@media (width <= ${breakpoints.tablet}) {
+  width: 133px;
+}
+
+@media (width <= ${breakpoints.smallMobile}) {
+  width: 250px;
+  margin-top: 0;
+}
 `
 export function AboutSection(){
     return(

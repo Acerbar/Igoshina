@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Paragraph } from "../components/Texts";
-import {ContactsContainer} from './contacts';
+import { Container } from "../components/section&container";
+import { breakpoints } from "../components/breakpoints";
 
 const FooterWrapper = styled.div`
     display: grid;
@@ -9,11 +10,11 @@ const FooterWrapper = styled.div`
     padding: 50px 0 20px;
     grid-template-areas: "date links paragraph toTop";
 
-    @media(893px <= width <=960px){
+    @media ( ${breakpoints.mobile} <= width <= ${breakpoints.tablet}){
         padding: 20px 30px;
         }
 
-    @media (width <= 892px) {
+        @media (width <= ${breakpoints.smallTablet}){
         grid-template-columns: 50px 1fr 44px;
         grid-template-rows: auto auto;
         gap: 20px;
@@ -22,11 +23,11 @@ const FooterWrapper = styled.div`
             "paragraph paragraph paragraph";
     }
 
-    @media (width <= 418px){
+    @media (width <= ${breakpoints.smallMobile}){
         grid-template-columns: 50px 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 30px 5px;
-    grid-template-areas:
+        grid-template-rows: auto auto auto;
+        gap: 30px 5px;
+        grid-template-areas:
             "date links"
             "span toTop"
             "paragraph paragraph";
@@ -46,9 +47,13 @@ const FooterLinks = styled.div`
     padding: 0 2vw;
     grid-area: links;
 
-    @media(width<=550px){
-        flex-direction: column;
+    @media (width <= ${breakpoints.mobile}){
         gap: 15px;
+        padding: 0;
+    }
+    @media (width <= ${breakpoints.smallMobile}){
+        flex-direction: column;
+        
     }
 `
 
@@ -72,7 +77,7 @@ const FooterParagraph = styled(Paragraph)`
     text-wrap: wrap;
     grid-area: paragraph;
 
-    @media(width<=892px){
+    @media (width <= ${breakpoints.smallTablet}){
     }
 `
 const ToTopButton = styled.a`
@@ -89,7 +94,7 @@ const ToTopButton = styled.a`
         border-color: var(--borderGreenHovered);
     }
 
-    @media(width<=419px){
+    @media (width <= ${breakpoints.smallMobile}){
         margin-bottom: 10px;
     }
 `
@@ -115,7 +120,7 @@ export default function FooterElem() {
     };
 
     return (
-        <ContactsContainer>
+        <Container>
             <FooterWrapper>
                 <DateParagraph>2024 ©</DateParagraph>
                 <FooterLinks>
@@ -129,6 +134,6 @@ export default function FooterElem() {
                     <Arrow />
                 </ToTopButton>
             </FooterWrapper>
-        </ContactsContainer>
+        </Container>
     );
 }

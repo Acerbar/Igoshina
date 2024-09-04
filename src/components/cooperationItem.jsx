@@ -3,6 +3,7 @@ import { TitleH4, Paragraph } from "./Texts";
 import ButtonElem from "./button";
 import TelegramIcon from "./telegram";
 import { useEffect, useState } from "react";
+import { breakpoints } from "./breakpoints";
 
 const CoopItemWrapper = styled.div`
     display: flex;
@@ -21,22 +22,18 @@ const CoopItemWrapper = styled.div`
     }
     
 
-    @media (width <= 960px) {
+    @media (width <= ${breakpoints.tablet}){
         width: min(48.5%, 435px);
         min-height: 200px;
         height: auto;
         padding: 1em;
     }
 
-    @media (width <= 640px) {
-        height: 270px;
-        margin: 0 auto;
-    }
-
-    @media (width <= 597px) {
+     @media (width <= ${breakpoints.mobile}) {
         width: max(425px, 80%);
         height: 230px;
         padding: 1em;
+        margin: 0 auto;
     }
 `;
 
@@ -87,7 +84,7 @@ const ContentInnerPrice = styled.div`
 `;
 
 const CooperationParagraph = styled(Paragraph)`
-    @media (width <= 640px) {
+     @media (width <= ${breakpoints.mobile}) {
         font-size: 14px;
     }
 `;
@@ -103,11 +100,11 @@ const TimeParagraph = styled(CooperationParagraph)`
 
 
 const CooperationButton = styled(ButtonElem)`
-@media (width <= 640px) {
+ @media (width <= ${breakpoints.mobile}) {
     margin: 0 auto;
     width: 230px;
 }
-    @media (width <= 440px) {
+@media (width <= ${breakpoints.smallMobile}) {
         width: 250px;
     }
 `;

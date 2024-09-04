@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Paragraph, TitleH4 } from "./Texts";
 import RoundButtonElem from "./roundButton";
 import { useState } from "react";
-
+import { breakpoints } from "./breakpoints";
 
 const FAQItemWrapper = styled.div`
 border-top: 1px solid var(--borderGrey);
@@ -17,7 +17,7 @@ align-items: center;
 gap: 3em;
 padding: 1em 1em 1em 0;
 
-    @media(width <= 640px){
+@media (width <= ${breakpoints.moblie}){
         padding-right: 0;
     }
 `
@@ -26,7 +26,7 @@ white-space: pre-line;
 padding: 0 0 2em 1em;
 width: 78%;
 
-@media(width <=640px){
+@media (width <= ${breakpoints.moblie}){
     width: 85%;
 }
 `

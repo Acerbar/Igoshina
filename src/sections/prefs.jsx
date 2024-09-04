@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PrefItem from "../components/prefItem";
 import { TitleH3 } from "../components/Texts";
 import { Section, Container } from "../components/section&container";
+import { breakpoints } from "../components/breakpoints";
 
 const PrefsContent = styled.div`
     display: grid;
@@ -17,7 +18,7 @@ const PrefsContent = styled.div`
         height: 100%;
     }
 
-    @media (max-width: 960px) {
+    @media (width <= ${breakpoints.tablet}) {
         grid-template-columns: 1fr;
         gap: 0;
     }

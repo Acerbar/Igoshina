@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Paragraph } from "./Texts";
+import { breakpoints } from "./breakpoints";
 
 const WorkParagraph = styled(Paragraph)`
   display: flex;
@@ -7,7 +8,7 @@ const WorkParagraph = styled(Paragraph)`
   width: 100%;
   color: var(--secondaryText);
   
-  @media(width <=640px){
+  @media (width <= ${breakpoints.mobile}){
     line-height: 1.3em;
 }
   

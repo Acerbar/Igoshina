@@ -3,12 +3,16 @@ import { Container } from "../components/section&container";
 import { TitleH3 } from "../components/Texts";
 import WorkFormatItem from "../components/workformatItem";
 import { formatDescriptions } from "../JS/workTexts";
-
+import { breakpoints } from "../components/breakpoints";
 
 
 const WorkFormatWrapper = styled(Container)`
 width: min(95%, 1240px);
 padding: 50px 0;
+
+@media (width <= ${breakpoints.tablet}){
+  width: 100%;
+}
 `
 
 const WorkFormatContainer = styled(Container)`

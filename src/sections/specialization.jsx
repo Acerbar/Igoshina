@@ -3,6 +3,7 @@ import { Section, Container } from "../components/section&container";
 import { TitleH3 } from "../components/Texts";
 import { specializationTexts } from "../JS/specializationText";
 import SpecializationItem from "../components/specializationItem";
+import { breakpoints } from "../components/breakpoints";
 
 const SpecializationInner = styled(Container)`
     display: grid;
@@ -16,11 +17,11 @@ const SpecializationInner = styled(Container)`
         padding: 0;
     }
 
-    @media(width<=960px){
+    @media (width <= ${breakpoints.tablet}){
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media(width<=500px){
+    @media (width <= ${breakpoints.smallMobile}){
         grid-template-columns: 1fr;
     }
 `

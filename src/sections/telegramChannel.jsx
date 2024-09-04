@@ -2,18 +2,11 @@ import styled from "styled-components";
 import { TitleH4, Paragraph } from "../components/Texts";
 import ButtonElem from "../components/button";
 import Image from "../components/Images";
-import { Section, Container } from "../components/section&container";
+import { Container } from "../components/section&container";
+import { breakpoints } from "../components/breakpoints";
 
 const TelegramContainer = styled(Container)`
-    margin: 0 auto;
-
-@media(width<=960px){
-    padding: 0 10px;
-}
-
-@media(width<=862px){
-    padding: 0 20px;
-}
+    margin: 50px auto;
 `
 
 const TelegramElem = styled.div`
@@ -26,12 +19,12 @@ const TelegramElem = styled.div`
     background-color: var(--lineGreen);
     border-radius: 24px;
 
-    @media(width <= 639px){
+    @media (width <= ${breakpoints.mobile}){
         flex-direction: column;
         
     }
 
-    @media(width <= 320px){
+    @media (width <= ${breakpoints.extraSmallMobile}){
         border-radius: 14px;
     }
 
@@ -39,18 +32,17 @@ const TelegramElem = styled.div`
         position: absolute;
         bottom: 0;
         right: 6%;
-        z-index: 2;
         width: 330px;
 
-        @media(width<=960px){
+        @media (width <= ${breakpoints.tablet}){
             width: clamp(250px, 42vw, 330px);
         }
 
-        @media(width<=862px){
+        @media (width <= ${breakpoints.smallTablet}){
             right: 0;
         }
 
-        @media(width<=640px){
+        @media (width <= ${breakpoints.mobile}){
             position: static;
             margin: 0 15px 0 auto;
         }
@@ -63,14 +55,15 @@ const TelegramElemText = styled.div`
     padding: 2em;
     justify-content: space-between;
 
-    @media(width<=640px){
+    @media (width <= ${breakpoints.mobile}){
         width: 100%;
         margin: 0 auto;
     }
 `
 const TelegramTitle = styled(TitleH4)`
     text-wrap: nowrap;
-    @media(width<=960px){
+    @media (width <= ${breakpoints.tablet})
+    {
     font-size: clamp(18px, 2.8vw, 24px);
 }
 
@@ -92,7 +85,7 @@ const TelegramParagraph = styled(Paragraph)`
 
 `
 const TelegramButton = styled(ButtonElem)`
-    @media(width<=430px){
+@media (width <= ${breakpoints.smallMobile}){
         width: 250px;
         font-size: 14px;
         align-self: center;
@@ -101,7 +94,6 @@ const TelegramButton = styled(ButtonElem)`
 
 export default function TelegramChannelSection(){
     return(
-        <Section>
             <TelegramContainer>
                 <TelegramElem>
                     <TelegramElemText>
@@ -112,7 +104,5 @@ export default function TelegramChannelSection(){
                         <img src={Image.IceCream} alt=""/>
                 </TelegramElem>
             </TelegramContainer>
-        </Section>
-
     )
 }

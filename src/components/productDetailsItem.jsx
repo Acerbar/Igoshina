@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { Paragraph, TitleH3, TitleH5 } from "./Texts";
 import ButtonElem from "./button";
+import { breakpoints } from "./breakpoints";
 
 const ProductDetailsItemWrapper = styled.div`
     display: flex;
     max-height: fit-content;
     margin: 2vw auto;
 
-    @media(width <= 640px){
+    @media (width <= ${breakpoints.mobile}){
         flex-direction: column;
         margin: 3vw auto;
     }
@@ -15,15 +16,17 @@ const ProductDetailsItemWrapper = styled.div`
 
 const ProductDetaisItemImage = styled.img`
     width: 44%;
-    height: auto;
     max-height: 505px;
     object-fit: cover;
     border-radius: 20px;
     flex-shrink: 0;
 
-    @media(width <= 640px){
+    @media (width <= ${breakpoints.tablet}){
+        width: 50%;
+    }
+    @media (width <= ${breakpoints.mobile}){
         width: 100%;
-        height: clamp(190px, 10vw, 380px)
+        aspect-ratio: 3 / 2;
     }
 `;
 
@@ -33,19 +36,27 @@ const ProductDetailsItemContent = styled.div`
     flex-grow: 1;
     justify-content: space-between;
     padding: 0 4vw 2vw;
+
+    @media (width <= ${breakpoints.mobile}){
+        padding: 0 0 2vw;
+    }
 `;
 
 const ProductDetailsItemPrice = styled(TitleH5)`
     font-size: 24px;
     margin: 2.5vw 0 1em;
 
-    @media(width <= 640px){
+    @media (width <= ${breakpoints.mobile}){
         font-size: clamp(18px, 4vw, 24px)
     }
 `;
 
 const ProductDetailsItemButton = styled(ButtonElem)`
     min-width: 195px;
+
+    @media (width <= ${breakpoints.mobile}){
+        width: 100%;
+    }
 `;
 
 export default function ProductDetailsItem({ id, image, title, description, price }) {
