@@ -146,17 +146,19 @@ export default function CooperationItem({ title, subtitle, text, price, prepay, 
                     <CooperationParagraph style={{ color: "var(--greyText)" }}>{prepay}</CooperationParagraph>
                 </ContentInnerPrice>
             </CoopItemContent>
-            <div className="button">
-                <CooperationButton to="/Igoshina/workFormats">
-                    {$isLast ? (
-                        <>
-                            Телеграм <TelegramIcon variant="default" />
-                        </>
-                    ) : (
-                        "Подробнее"
-                    )}
-                </CooperationButton>
-            </div>
+            <CooperationButton
+                href={$isLast ? "https://t.me/igoshinanastasia" : undefined}
+                to={$isLast ? undefined : "/Igoshina/workFormats"}
+                $isLast={$isLast}
+            >
+                {$isLast ? (
+                    <>
+                        Телеграм <TelegramIcon variant="default" />
+                    </>
+                ) : (
+                    "Подробнее"
+                )}
+            </CooperationButton>
         </CoopItemWrapper>
     );
 }

@@ -59,11 +59,11 @@ export default function ProductsSection() {
                         />
                     ))}
                 </ProductsWrapper>
-                {/* {visibleProducts < products.length && ( */}
+                {visibleProducts < products.length && (
                     <ProductsButton onClick={loadMoreProducts}>
                         Показать еще
                     </ProductsButton>
-                {/* )} */}
+                )}
             </Container>
         </Section>
         </>

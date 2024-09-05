@@ -13,7 +13,7 @@ const Button = styled(Link)`
     border: 1px solid transparent;
     border-radius: 100px;
     background-color: var(--mainGreen);
-    color: #fff;
+    color: var(--whiteColor);
     font-family: var(--font-family-2);
     font-weight: 600;
     font-size: 16px;
@@ -24,7 +24,7 @@ const Button = styled(Link)`
     &:hover,
     &:focus {
         outline: none;
-        color: #fff;
+        color: var(--whiteColor);
         border: 1px solid transparent;
         background-color: oklch(54.36% 0.113 128.95);
     }
@@ -50,9 +50,20 @@ const LightButton = styled(Button)`
 `;
 
 
-export default function ButtonElem({children, isColored, ...props}){
-    const Buttons = isColored ? Button : LightButton
-    return(
-        <Buttons {...props}>{children}</Buttons>
-    )
+export default function ButtonElem({children, isColored, href, ...props}){
+    const Buttons = isColored ? Button : LightButton;
+
+    if (href) {
+        return (
+            <Buttons as="a" href={href} {...props}>
+                {children}
+            </Buttons>
+        );
+    }
+
+    return (
+        <Buttons {...props}>
+            {children}
+        </Buttons>
+    );
 }

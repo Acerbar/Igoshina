@@ -189,9 +189,9 @@ export function AboutSection(){
                     <AboutParagraph>Я дипломированный нутрициолог и член Ассоциации Нутрициологов и Коучей по Здоровью.</AboutParagraph>
                     <AboutParagraph>В рамках своих консультаций я не даю банальных, всем известных советов по здоровью. Мои рекомендации всегда строго персонализированы и индивидуальны.</AboutParagraph>
                     <ButtonsBlock>
-                        <EducationButtonStyled>Телеграм</EducationButtonStyled>
+                        <EducationButtonStyled href="https://t.me/igoshinanastasia">Телеграм</EducationButtonStyled>
                         <EducationButtonStyled>WhatsApp</EducationButtonStyled>
-                        <EducationButtonStyled>Почта</EducationButtonStyled>
+                        <EducationButtonStyled href="mailto:Igoshina94@gmail.com">Почта</EducationButtonStyled>
                     </ButtonsBlock>
                 </AboutText>
             </AboutInner>

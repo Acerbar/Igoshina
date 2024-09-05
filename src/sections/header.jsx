@@ -357,8 +357,8 @@ export default function HeaderElem({ isModalOpen }) {
                                 <NavItem>Методички / Шпаргалки</NavItem>
                             </Submenu>
                         </SubmenuWrapper>
+                        <NavItem to="/Igoshina/promo">Промокоды</NavItem>
                         <NavItem to="/Igoshina/about">Обо мне</NavItem>
-                        <NavItem to="/Igoshina/contacts">Контакты</NavItem>
                     </Nav>
                     <BurgerMenu>
                         <BurgerIcon ref={burgerIconRef} onClick={toggleBurgerNav}>
@@ -377,8 +377,8 @@ export default function HeaderElem({ isModalOpen }) {
                                             <NavItem onClick={handleClickInside}>Методички / Шпаргалки</NavItem>
                                         </SubmenuBurger>
                                     </SubmenuWrapper>
+                                    <NavItemBurger to="/Igoshina/promo" onClick={handleClickInside}>Промоокоды</NavItemBurger>
                                     <NavItemBurger to="/Igoshina/about" onClick={handleClickInside}>Обо мне</NavItemBurger>
-                                    <NavItemBurger to="/Igoshina/contacts" onClick={handleClickInside}>Контакты</NavItemBurger>
                                 </BurgerNavContent>
                                 <ButtonElem to="/Igoshina/contacts" style={{alignSelf: "center"}} onClick={handleClickInside}>Связаться со мной
                                         <TelegramIcon variant="default" />

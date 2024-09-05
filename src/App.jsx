@@ -10,6 +10,7 @@ import ProductDetails from './sections/productDetailsSection'
 import ProductDetailsPage from './pages/productDetailsPage'
 import ContactsPage from './pages/contactsPage'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { PromoPage } from './pages/promoPage'
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function AppRoutes() {
       <Route path='/Igoshina/workFormats' element={<WorkFormatsPage/> }/>
       <Route path='/Igoshina/products' element={<ProductsSection/> }/>
       <Route path='/Igoshina/contacts' element={<ContactsPage/> }/>
-      {/* <Route path='/Igoshina/productDetails' element={<ProductDetails/> }/> */}
+      <Route path='/Igoshina/promo' element={<PromoPage/> }/>
       <Route path="/Igoshina/productDetails/:productId" element={<ProductDetailsPage />} />
     </Routes>
   );

@@ -16,8 +16,9 @@ justify-content: space-between;
 align-items: center;
 gap: 3em;
 padding: 1em 1em 1em 0;
+cursor: pointer;
 
-@media (width <= ${breakpoints.moblie}){
+@media (width <= ${breakpoints.mobile}){
         padding-right: 0;
     }
 `
@@ -26,7 +27,7 @@ white-space: pre-line;
 padding: 0 0 2em 1em;
 width: 78%;
 
-@media (width <= ${breakpoints.moblie}){
+@media (width <= ${breakpoints.mobile}){
     width: 85%;
 }
 `
@@ -39,9 +40,9 @@ export default function FAQItem({title, content}){
 
     return(
         <FAQItemWrapper>
-            <FAQItemInner>
+            <FAQItemInner onClick={handleToggle}>
                 <TitleH4>{title}</TitleH4>
-                <RoundButtonElem onClick={handleToggle} minusHidden={isOpen}/>
+                <RoundButtonElem minusHidden={isOpen}/>
             </FAQItemInner>
             {isOpen && <FAQParagraph>{content}</FAQParagraph>}
         </FAQItemWrapper>

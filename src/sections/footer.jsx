@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Paragraph } from "../components/Texts";
 import { Container } from "../components/section&container";
 import { breakpoints } from "../components/breakpoints";
+import { Link } from "react-router-dom";
 
 const FooterWrapper = styled.div`
     display: grid;
@@ -14,21 +15,23 @@ const FooterWrapper = styled.div`
         padding: 20px 30px;
         }
 
-        @media (width <= ${breakpoints.smallTablet}){
+        @media (width <= ${breakpoints.tablet}){
         grid-template-columns: 50px 1fr 44px;
         grid-template-rows: auto auto;
-        gap: 20px;
+        gap: 10px;
         grid-template-areas:
             "date links toTop"
             "paragraph paragraph paragraph";
+            padding: 20px 10px;
     }
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (width <= ${breakpoints.mobile}){
         grid-template-columns: 50px 1fr;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: repeat(4, auto);
         gap: 30px 5px;
         grid-template-areas:
-            "date links"
+            "date date"
+            "links links"
             "span toTop"
             "paragraph paragraph";
     }
@@ -47,6 +50,10 @@ const FooterLinks = styled.div`
     padding: 0 2vw;
     grid-area: links;
 
+    @media (width <= ${breakpoints.smallTablet}){
+        gap: 15px;
+        padding: 0 1vw;
+    }
     @media (width <= ${breakpoints.mobile}){
         gap: 15px;
         padding: 0;
@@ -57,7 +64,7 @@ const FooterLinks = styled.div`
     }
 `
 
-const FooterLink = styled.a`
+const FooterLink = styled(Link)`
     font-family: var(--font-family-2);
     font-size: 14px;
     font-weight: 400;
@@ -124,6 +131,7 @@ export default function FooterElem() {
             <FooterWrapper>
                 <DateParagraph>2024 ©</DateParagraph>
                 <FooterLinks>
+                    <FooterLink to="/Igoshina/contacts">Контакты</FooterLink>
                     <FooterLink href="#">Политика конфиденциальности</FooterLink>
                     <FooterLink href="#">Договор оферты</FooterLink>
                 </FooterLinks>
