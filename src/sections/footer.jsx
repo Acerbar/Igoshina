@@ -11,11 +11,11 @@ const FooterWrapper = styled.div`
     padding: 50px 0 20px;
     grid-template-areas: "date links paragraph toTop";
 
-    @media ( ${breakpoints.mobile} <= width <= ${breakpoints.tablet}){
+    @media ( ${breakpoints.mobile} <= max-width: ${breakpoints.tablet}){
         padding: 20px 30px;
         }
 
-        @media (width <= ${breakpoints.tablet}){
+        @media (max-width: ${breakpoints.tablet}){
         grid-template-columns: 50px 1fr 44px;
         grid-template-rows: auto auto;
         gap: 10px;
@@ -25,7 +25,7 @@ const FooterWrapper = styled.div`
             padding: 20px 10px;
     }
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         grid-template-columns: 50px 1fr;
         grid-template-rows: repeat(4, auto);
         gap: 30px 5px;
@@ -50,15 +50,15 @@ const FooterLinks = styled.div`
     padding: 0 2vw;
     grid-area: links;
 
-    @media (width <= ${breakpoints.smallTablet}){
+    @media (max-width: ${breakpoints.smallTablet}){
         gap: 15px;
         padding: 0 1vw;
     }
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         gap: 15px;
         padding: 0;
     }
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         flex-direction: column;
         
     }
@@ -84,7 +84,7 @@ const FooterParagraph = styled(Paragraph)`
     text-wrap: wrap;
     grid-area: paragraph;
 
-    @media (width <= ${breakpoints.smallTablet}){
+    @media (max-width: ${breakpoints.smallTablet}){
     }
 `
 const ToTopButton = styled.a`
@@ -101,7 +101,7 @@ const ToTopButton = styled.a`
         border-color: var(--borderGreenHovered);
     }
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         margin-bottom: 10px;
     }
 `

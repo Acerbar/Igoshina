@@ -22,22 +22,22 @@ border: 1px solid var(--borderGrey);
 border-radius: 20px;
 padding: 2.5em;
 
-@media(${breakpoints.mobile} <= width <= ${breakpoints.tablet}){
+@media(${breakpoints.mobile} <= max-width: ${breakpoints.tablet}){
     border-radius: 40px;
     padding: 2em 1em;
 }
 
-@media (width <= ${breakpoints.smallTablet}){
+@media (max-width: ${breakpoints.smallTablet}){
 grid-template-columns: 1fr;
 padding: 2em;
 }
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     border-radius: 20px;
     padding: 2em 1em;
 }
 
-@media (width <= ${breakpoints.extraSmallMobile}){
+@media (max-width: ${breakpoints.extraSmallMobile}){
     border-radius: 14px;
     padding: 1em;
 }
@@ -52,7 +52,7 @@ display: flex;
 flex-direction: column;
 gap: .6em;
 
-@media (width <= ${breakpoints.smallTablet}){
+@media (max-width: ${breakpoints.smallTablet}){
     margin: 1.5em 0;
 }
 `
@@ -63,14 +63,14 @@ justify-content: flex-start;
 align-items: center;
 gap: .3em;
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     align-items: end;
 }
 `
 const StyledTitleH4 = styled(TitleH4)`
     font-size: 30px;
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         font-size: clamp(18px, 3.8vw, 30px);
     })
 
@@ -81,7 +81,7 @@ font-size: 20px;
 font-weight: 600;
 color: var(--mainGreen);
 
-@media (width <= ${breakpoints.mobile}) {
+@media (max-width: ${breakpoints.mobile}) {
     font-size: 14px;
 }
 `
@@ -91,7 +91,7 @@ flex-direction: column;
 gap: 1.5em;
 `
 const StyledPrice = styled(TitleH4)`
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     font-size: clamp(18px, 5vw, 24px);
 }
 `
@@ -100,7 +100,7 @@ const WorkFormatItemParagraph = styled(Paragraph)`
 color: var(--greyText);
 text-wrap: balance;
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     font-size: clamp(14px, 3vw, 16px);
 }
 `
@@ -117,7 +117,7 @@ font-weight:500;
 }
 `
 const WorkButtonElem = styled(ButtonElem)`
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     width: 100%;
 }
 `

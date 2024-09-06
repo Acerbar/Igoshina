@@ -30,7 +30,7 @@ export const DiplomItemWrapper = styled.dialog`
     background-color: oklch(0% 0 0 / 40%);
   }
 
-  @media (width <= ${breakpoints.smallTablet}){
+  @media (max-width: ${breakpoints.smallTablet}){
     width: clamp(300px, 90vw, 720px);
 
   }
@@ -47,17 +47,17 @@ export const DiplomItemInner = styled.div`
   bottom: -50px;
   position: relative;
 
-  @media (width <= ${breakpoints.smallTablet}){
+  @media (max-width: ${breakpoints.smallTablet}){
     width: 100%;
     padding: 20px 0 10px;
     border-radius: 20px;
   }
 
-  @media (width <= ${breakpoints.mobile}){
+  @media (max-width: ${breakpoints.mobile}){
     padding: 0;
   }
 
-  @media (width <= ${breakpoints.smallMobile}){
+  @media (max-width: ${breakpoints.smallMobile}){
     padding: 0;
   }
 `
@@ -70,7 +70,7 @@ export const CloseModalButton = styled.div`
     right: 0;
     cursor: pointer;
 
-    @media (width <= ${breakpoints.smallTablet}){
+    @media (max-width: ${breakpoints.smallTablet}){
         top: 0;
         right: 1%;
 
@@ -106,19 +106,19 @@ height: 100%;
     border: 1px solid var(--borderGreen);
     border-radius: 50%;
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         display: none;
     }
   }
   .swiper-button-next{
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         right: 5px;
     }
 }
 
 
 .swiper-button-prev{
-  @media (width <= ${breakpoints.mobile}){
+  @media (max-width: ${breakpoints.mobile}){
         left: 5px;
     }
   }
@@ -142,7 +142,7 @@ height: 100%;
   }
 
   .swiper-pagination{
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         top: calc(210px + (280 - 210) * ((100vw - 320px) / (499 - 320)));
     }
   }
@@ -165,10 +165,10 @@ const StyledSwiperSlide = styled(SwiperSlide)`
     margin: 0 auto;
     object-fit: contain;
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         width: clamp(280px, 74vw, 560px);
     }
-    @media (width <= ${breakpoints. extraSmallMobile}){
+    @media (max-width: ${breakpoints. extraSmallMobile}){
         border-radius: 20px 20px 0 0;
         width: 280px;
     }
@@ -182,13 +182,13 @@ margin: 3% auto 5%;
 font-size: 14px;
 text-align: center;
 
-@media (width <= ${breakpoints.smallTablet}){
+@media (max-width: ${breakpoints.smallTablet}){
     width: 75%;
 }
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     margin-bottom: 7%;
 }
-@media (width <= ${breakpoints.smallMobile}){
+@media (max-width: ${breakpoints.smallMobile}){
     width: 90%;
     margin: 12% auto 5%;
 }

@@ -19,12 +19,12 @@ const TelegramElem = styled.div`
     background-color: var(--lineGreen);
     border-radius: 24px;
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         flex-direction: column;
         
     }
 
-    @media (width <= ${breakpoints.extraSmallMobile}){
+    @media (max-width: ${breakpoints.extraSmallMobile}){
         border-radius: 14px;
     }
 
@@ -34,15 +34,15 @@ const TelegramElem = styled.div`
         right: 6%;
         width: 330px;
 
-        @media (width <= ${breakpoints.tablet}){
+        @media (max-width: ${breakpoints.tablet}){
             width: clamp(250px, 42vw, 330px);
         }
 
-        @media (width <= ${breakpoints.smallTablet}){
+        @media (max-width: ${breakpoints.smallTablet}){
             right: 0;
         }
 
-        @media (width <= ${breakpoints.mobile}){
+        @media (max-width: ${breakpoints.mobile}){
             position: static;
             margin: 0 15px 0 auto;
         }
@@ -55,14 +55,14 @@ const TelegramElemText = styled.div`
     padding: 2em;
     justify-content: space-between;
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         width: 100%;
         margin: 0 auto;
     }
 `
 const TelegramTitle = styled(TitleH4)`
     text-wrap: nowrap;
-    @media (width <= ${breakpoints.tablet})
+    @media (max-width: ${breakpoints.tablet})
     {
     font-size: clamp(18px, 2.8vw, 24px);
 }
@@ -71,7 +71,7 @@ const TelegramTitle = styled(TitleH4)`
         color: var(--mainGreen);
         margin-left: .5em;
 
-        @media(width <= 1148px){
+        @media(max-width: 1148px){
             display: block;
             margin-left: 0;
         }
@@ -85,7 +85,7 @@ const TelegramParagraph = styled(Paragraph)`
 
 `
 const TelegramButton = styled(ButtonElem)`
-@media (width <= ${breakpoints.smallMobile}){
+@media (max-width: ${breakpoints.smallMobile}){
         width: 250px;
         font-size: 14px;
         align-self: center;

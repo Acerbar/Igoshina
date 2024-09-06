@@ -10,11 +10,11 @@ padding: 1.4em 0;
 gap: 1.3em;
 border-bottom: 1px solid var(--borderGrey);
 
-@media (width <= ${breakpoints.tablet}){
+@media (max-width: ${breakpoints.tablet}){
     width: 100%;
 }
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     padding: 0.8em 0;
 }
 `

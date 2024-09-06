@@ -18,7 +18,7 @@ const PrefsContent = styled.div`
         height: 100%;
     }
 
-    @media (width <= ${breakpoints.tablet}) {
+    @media (max-width: ${breakpoints.tablet}) {
         grid-template-columns: 1fr;
         gap: 0;
     }

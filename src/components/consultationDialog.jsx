@@ -8,13 +8,13 @@ import { breakpoints } from "./breakpoints";
 
 const ConsultationItemInner = styled(DiplomItemInner)`
 padding: 3em;
-@media (width <= ${breakpoints.tablet}) {
+@media (max-width: ${breakpoints.tablet}) {
     padding: 2em;
 }
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     padding: 1.5em;
 }
-@media (width <= ${breakpoints.extraSmallMobile}){
+@media (max-width: ${breakpoints.extraSmallMobile}){
     padding: 1em;
 }
 `

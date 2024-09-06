@@ -18,7 +18,7 @@ const RecommendationsButton = styled(ButtonElem)`
   margin: 2em auto;
   min-width: 255px;
 
-  @media (width <= ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
   }
 `;

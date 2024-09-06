@@ -22,14 +22,14 @@ const CoopItemWrapper = styled.div`
     }
     
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         width: min(48.5%, 435px);
         min-height: 200px;
         height: auto;
         padding: 1em;
     }
 
-     @media (width <= ${breakpoints.mobile}) {
+     @media (max-width: ${breakpoints.mobile}) {
         width: max(425px, 80%);
         height: 230px;
         padding: 1em;
@@ -42,7 +42,7 @@ const CoopItemContent = styled.div`
     flex-direction: row;
     justify-content: space-between;
 
-    @media (width <= 870px) {
+    @media (max-width: 870px) {
         flex-direction: column;
         align-items: start;
         flex: 1 1 auto;
@@ -64,11 +64,11 @@ const ContentInnerTitle = styled.div`
     & > :nth-child(2) {
         align-self: end;
 
-        @media (961px <= width <= 1280px) {
+        @media (961px <= max-width: 1280px) {
             align-self: start;
         }
     }
-    @media(961px <= width <= 1280px){
+    @media(961px <= max-width: 1280px){
         flex-direction: column;
     }
 `;
@@ -78,13 +78,13 @@ const ContentInnerPrice = styled.div`
     flex-direction: column;
     text-align: end;
 
-    @media (width <= 870px) {
+    @media (max-width: 870px) {
         text-align: start;
     }
 `;
 
 const CooperationParagraph = styled(Paragraph)`
-     @media (width <= ${breakpoints.mobile}) {
+     @media (max-width: ${breakpoints.mobile}) {
         font-size: 14px;
     }
 `;
@@ -93,18 +93,18 @@ const TimeParagraph = styled(CooperationParagraph)`
     font-weight: 600;
     color: var(--mainGreen);
 
-    @media (641px <= width <= 1054px) {
+    @media (641px <= max-width: 1054px) {
         display: none;
     }
 `;
 
 
 const CooperationButton = styled(ButtonElem)`
- @media (width <= ${breakpoints.mobile}) {
+ @media (max-width: ${breakpoints.mobile}) {
     margin: 0 auto;
     width: 230px;
 }
-@media (width <= ${breakpoints.smallMobile}) {
+@media (max-width: ${breakpoints.smallMobile}) {
         width: 250px;
     }
 `;

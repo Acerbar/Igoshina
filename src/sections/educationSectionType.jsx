@@ -9,17 +9,17 @@ import DiplomItem from "../components/diplomDialog";
 import { breakpoints } from "../components/breakpoints";
 
 const EducationTypeTitle = styled(EducationTitle)`
-@media (width <= ${breakpoints.smallTablet}){
+@media (max-width: ${breakpoints.smallTablet}){
     display: none;
 }
 `
 const EducationTypeTitleHidden = styled(EducationTitle)`
 display:none;
-@media (width <= ${breakpoints.smallTablet}){
+@media (max-width: ${breakpoints.smallTablet}){
     display: block;
     margin: 40px 0 30px;
 }
-@media (width <= ${breakpoints.smallMobile}){
+@media (max-width: ${breakpoints.smallMobile}){
     margin: 20px 0 10px;
 }
 `
@@ -27,14 +27,14 @@ const EducationContent = styled.div`
     display: flex;
     gap: 5%;
 
-    @media (width <= ${breakpoints.smallTablet}){
+    @media (max-width: ${breakpoints.smallTablet}){
         flex-direction: column-reverse;
         margin-top: 20px;
     }
 `
 const EducationTypePhoto =styled(EducationPhoto)`
     & > img{
-        @media(${breakpoints.smallTablet} <= width <= 1960px){
+        @media(${breakpoints.smallTablet} <= max-width: 1960px){
             height: clamp(530px, 40vw, 690px);
     }
 }

@@ -13,7 +13,7 @@ const ProductItemWrapper = styled.div`
     border-radius: 20px;
     overflow: hidden;
     
-    @media (width <= ${breakpoints.extraSmallMobile}){
+    @media (max-width: ${breakpoints.extraSmallMobile}){
         border-radius: 14px;
     }
 `;
@@ -37,7 +37,7 @@ const ProductItemTitle = styled(TitleH5)`
     flex-grow: 1;
     height: fit-content;
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         font-size: 18px;
     }
 `;
@@ -46,7 +46,7 @@ const ProductItemButton = styled(ButtonElem)`
     width: 100%;
     margin: 1.5em auto;
 
-    @media (width <= ${breakpoints.extraSmallMobile}){
+    @media (max-width: ${breakpoints.extraSmallMobile}){
         font-size: 14px;
     }
 `;
@@ -65,7 +65,7 @@ const ProductItemLink = styled.a`
         color: var(--mainGreenHovered);
     }
 
-    @media (width <= ${breakpoints.extraSmallMobile}){
+    @media (max-width: ${breakpoints.extraSmallMobile}){
         font-size: 14px;
     }
 `;

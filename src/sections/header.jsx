@@ -16,10 +16,10 @@ const Header = styled.header`
     border-bottom: ${({ $fixed }) => ($fixed ? '1px solid var(--borderGrey)' : '')};
     background-color: ${({ $fixed }) => ($fixed ? 'var(--backgroundColor)' : '')};
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         padding: 15px 40px;
     }
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         padding: 15px 20px;
     }
 `;
@@ -30,10 +30,10 @@ const HeaderInner = styled.div`
     align-items: center;
     justify-content: space-between;
     
-    @media (${breakpoints.tablet}  <= width <= 1080px){
+    @media (${breakpoints.tablet}  <= max-width: 1080px){
         padding: 0 60px;
     }
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         padding: 0;
     }
 `
@@ -45,7 +45,7 @@ const Logo = styled(Link)`
     font-size: 24px;
     color: ${({$visible}) => ($visible ? "transparent" : "var(--secondaryText)")};
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         font-size: clamp(14.5px, 3.8vw, 24px);
         
     }
@@ -56,7 +56,7 @@ const Nav = styled.nav`
     align-items: center;
     gap: 1.4em;
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         display: none;
     }
 `;
@@ -75,7 +75,7 @@ const NavItem = styled(Link)`
         color: var(--blackText);
     }
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         font-size: 16px;
     }
 `;
@@ -188,7 +188,7 @@ const BurgerMenu = styled.div`
     display: none;
 
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         display: block;
     }
 `;
@@ -199,7 +199,7 @@ const BurgerIcon = styled.div`
     height: 24px;
     position: relative;
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         width: 20px;
         height: 20px;
     }
@@ -253,7 +253,7 @@ background-color: oklch(0% 0 0 / 40%);
 transform: translateX(${({$visible}) => ($visible ? '0' : '250%')});
 transition: transform 0.3s linear;
 
-@media (width <= ${breakpoints.smallMobile}){
+@media (max-width: ${breakpoints.smallMobile}){
     width: 100%;
 }
 `;
@@ -272,7 +272,7 @@ width: 320px;
 height: 100%;
 overflow: hidden;
 
-@media (width <= ${breakpoints.smallMobile}){
+@media (max-width: ${breakpoints.smallMobile}){
     width: 100%;
 }
 `
@@ -283,10 +283,9 @@ justify-content: space-between;
 
 `
 const HeaderButton = styled(ButtonElem)`
-
     font-size: clamp(12px, 1.2vw, 16px);
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         display: none;
     }
 `

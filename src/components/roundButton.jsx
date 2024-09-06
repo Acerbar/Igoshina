@@ -24,7 +24,7 @@ const RoundButton = styled.button`
         border-color: var(--focusBorderColor); /* Optional: customize focus border color */
     }
 
-    @media (width <= ${breakpoints.tablet}) {
+    @media (max-width: ${breakpoints.tablet}) {
         width: 40px;
         height: 40px;
     }
@@ -60,7 +60,7 @@ const Minus = styled.div`
         }
     `}
 
-    @media (width <= ${breakpoints.tablet}) {
+    @media (max-width: ${breakpoints.tablet}) {
         width: 11px;
     }
 `;

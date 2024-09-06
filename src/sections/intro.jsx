@@ -8,11 +8,11 @@ import { breakpoints } from "../components/breakpoints";
 
 const IntroWrapper = styled(Section)`
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     flex-direction: column-reverse;
 }
 
-@media (width <= ${breakpoints.extraSmallMobile}){
+@media (max-width: ${breakpoints.extraSmallMobile}){
 }
 `
 
@@ -22,7 +22,7 @@ flex-direction: column;
 justify-content: center;
 width: 54%;
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     width: 100%;
 }
 
@@ -31,7 +31,7 @@ const IntroParagraph = styled(Paragraph)`
     margin: 20px 0 30px;
     width: 80%;
 
-    @media (width <= ${breakpoints.extraSmallMobile}){
+    @media (max-width: ${breakpoints.extraSmallMobile}){
         width: 93%;
     }
 `
@@ -44,12 +44,11 @@ width: 46%;
     height: 100%;
     object-fit: cover;
 }
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     width: 100%;
     & > img{
         border-radius: 20px;
         aspect-ratio: 3 / 2;
-        // height: calc(380px - (90 * ((640px - 100vw) / 320)));
         transition: height 0.3s ease-in-out;
     }
 }
@@ -61,10 +60,10 @@ const IntroButton = styled(ButtonElem)`
     font-size: 20px;
     min-width: 290px;
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         font-size: clamp(14px, 4vw, 20px);
     }
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         align-self: center;
     }
 `

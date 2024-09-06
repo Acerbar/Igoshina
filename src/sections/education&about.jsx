@@ -19,21 +19,21 @@ import { breakpoints } from "../components/breakpoints";
   max-width: 1240px;
   margin: 0 auto;
 
-  @media (width <= ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.tablet}) {
     padding: 2em;
     border-radius: 40px;
   }
 
-  @media (width <= ${breakpoints.smallTablet}) {
+  @media (max-width: ${breakpoints.smallTablet}) {
     flex-direction: column;
     margin-top: 25px;
   }
 
-  @media (width <= ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.mobile}) {
     padding: 1em;
   }
 
-  @media (width <= ${breakpoints.smallMobile}) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     padding: 0.7em;
     border-radius: 14px;
   }
@@ -45,7 +45,7 @@ export const EducationText = styled.div`
     justify-content: space-between;
     width: 50%;
 
-    @media(width <= ${breakpoints.smallTablet}){
+    @media(max-width: ${breakpoints.smallTablet}){
         width: 100%;
     }
 `
@@ -61,34 +61,34 @@ img {
   height: 100%;
   object-fit: cover;
 
-  @media (width <= ${breakpoints.smallTablet}) {
+  @media (max-width: ${breakpoints.smallTablet}) {
     aspect-ratio: 3 / 2;
     object-position: 0% 20%;
     border-radius: 20px;
   }
 
-  @media (width <= ${breakpoints.smallMobile}) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     border-radius: 8px;
   }
 }
 
-@media (width <= ${breakpoints.smallTablet}) {
+@media (max-width: ${breakpoints.smallTablet}) {
   width: 100%;
 }
 `
 
 export const EducationParagraph = styled(Paragraph)`
-@media (width <= ${breakpoints.tablet}) {
+@media (max-width: ${breakpoints.tablet}) {
     font-size: 14px;
   }
 
-  @media (width <= ${breakpoints.smallTablet}) {
+  @media (max-width: ${breakpoints.smallTablet}) {
     width: 90%;
   }
 `
 export const EducationButton = styled(ButtonElem)`
     margin-top: 30px;
-    @media (width <= ${breakpoints.smallMobile}) {
+    @media (max-width: ${breakpoints.smallMobile}) {
         align-self: center;
       }
 }
@@ -121,18 +121,18 @@ const AboutInner = styled(EducationInner)`
   margin-top: 10px;
   width: 100%;
 
-  @media (width <= ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.tablet}) {
     height: fit-content;
   }
 
-  @media (width <= ${breakpoints.smallMobile}) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     padding: 0;
   }
 `
 const AboutPhoto = styled(EducationPhoto)`
 
 & > img{
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         border-radius: 20px 20px 0 0;
     }
 }
@@ -143,7 +143,7 @@ gap: 16px;
 padding: 0 1em 1em;
 `
 const AboutParagraph = styled(EducationParagraph)`
-@media (width <= ${breakpoints.tablet}){
+@media (max-width: ${breakpoints.tablet}){
     font-size: clamp(14px, 2vw, 16px);
 }
 `
@@ -153,7 +153,7 @@ const ButtonsBlock = styled.div`
     flex-direction: row;
     gap: 15px;
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         padding: 20px 0;
         flex-direction: column;
         align-items: center;
@@ -168,11 +168,11 @@ width: 155px;
   color: var(--whiteColor);
 }
 
-@media (width <= ${breakpoints.tablet}) {
+@media (max-width: ${breakpoints.tablet}) {
   width: 133px;
 }
 
-@media (width <= ${breakpoints.smallMobile}) {
+@media (max-width: ${breakpoints.smallMobile}) {
   width: 250px;
   margin-top: 0;
 }

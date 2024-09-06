@@ -45,12 +45,12 @@ body{
     padding: 0 40px;
     margin-top: 5vw;
 
-    @media(width <= 640px){
+    @media(max-width: 640px){
         padding: 0 20px;
         margin-top: 8vw;
     }
 
-    @media(width <= 500px){
+    @media(max-width: 500px){
         padding: 0 15px;
         margin-top: 15vw;
     }

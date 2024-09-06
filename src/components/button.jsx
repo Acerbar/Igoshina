@@ -29,7 +29,7 @@ const Button = styled(Link)`
         background-color: oklch(54.36% 0.113 128.95);
     }
 
-    @media (width <= ${breakpoints.extraSmallMobile}){
+    @media (max-width: ${breakpoints.extraSmallMobile}){
         font-size: 14px;
     }
 

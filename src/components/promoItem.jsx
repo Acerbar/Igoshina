@@ -14,7 +14,7 @@ border: 1px solid var(--borderGrey);
 border-radius: 15px;
 padding: 1em 1.5em;
 
-@media(width <= ${breakpoints.mobile}){
+@media(max-width: ${breakpoints.mobile}){
     flex-direction: column;
     justify-content: center;
 }
@@ -32,10 +32,10 @@ justify-content: center;
 gap: .5em;
 text-align: center;
 
-@media(width <= ${breakpoints.tablet}){
+@media(max-width: ${breakpoints.tablet}){
     align-items: end;
 }
-@media(width <= ${breakpoints.mobile}){
+@media(max-width: ${breakpoints.mobile}){
     align-items: center;
 }
 `

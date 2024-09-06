@@ -14,11 +14,11 @@ export const ProductsWrapper = styled.div`
     grid-auto-flow: row;
     gap: 20px;
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         grid-template-columns: 1fr;
     }
 `
@@ -26,7 +26,7 @@ export const ProductsWrapper = styled.div`
 const ProductsButton = styled(ButtonElem)`
     margin: 2em auto;
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         width: 100%;
     }
 `

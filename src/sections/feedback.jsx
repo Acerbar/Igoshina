@@ -14,19 +14,19 @@ import { breakpoints } from "../components/breakpoints";
 const FeedbackWrapper = styled(Section)`
 height: fit-content;
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     flex-direction: row;
 }
 `
 
 const FeedbackContainer =styled(Container)`
-@media(width <= 1080px){
+@media(max-width: 1080px){
     width: calc(100% + 60px);
 }
-@media(width <= ${breakpoints.mobile}){
+@media(max-width: ${breakpoints.mobile}){
     width: calc(100% + 20px);
 }
-@media(width <= ${breakpoints.extraSmallMobile}){
+@media(max-width: ${breakpoints.extraSmallMobile}){
     width: calc(100% + 15px);
 }
 `
@@ -38,7 +38,7 @@ max-width: 100vw;
 margin-bottom: 95px;
 padding-bottom: 40px;
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     margin-bottom: 70px;
     padding-bottom: 60px;
 }
@@ -54,7 +54,7 @@ padding-bottom: 40px;
   border-radius: 50%;
   top: 7%;
 
-  @media (width <= ${breakpoints.tablet}){
+  @media (max-width: ${breakpoints.tablet}){
     width: clamp(40px, 7vw, 50px);
     height: clamp(40px, 7vw, 50px);
   }
@@ -62,11 +62,11 @@ padding-bottom: 40px;
 .swiper-button-prev {
     left: calc(94% - 79.5px - 7.5px); 
 
-    @media(width <= 1080px){
+    @media(max-width: 1080px){
     left: calc(92% - 79.5px - 7.5px);
     }
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         left: calc(93% - 79.5px - 7.5px); 
     }
   }
@@ -74,7 +74,7 @@ padding-bottom: 40px;
   .swiper-button-next {
     right: 3%; 
     
-    @media(width <= 1080px){
+    @media(max-width: 1080px){
         right: 5%;
     }
   }
@@ -114,7 +114,7 @@ height: 460px;
 margin: auto auto 0;
 
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     width: 305px;
     height: 430px;
 }
@@ -124,7 +124,7 @@ margin: auto auto 0;
     object-fit: cover;
     border-radius: 20px;
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         border-radius: 14px;
     }
 }

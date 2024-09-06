@@ -10,11 +10,11 @@ const SpecializationParagraph = styled(Paragraph)`
     height: 61px;
     border-bottom: 1px solid var(--lineGreen);
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         height: clamp(52px, 9vw, 61px);
     }
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         line-height: 1.3em;
     }
     svg {

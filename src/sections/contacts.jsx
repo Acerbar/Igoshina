@@ -10,7 +10,7 @@ import { breakpoints } from "../components/breakpoints";
 export const ContactsContainer = styled(Container)`
 margin: 0 auto;
 
-@media (width <= ${breakpoints.tablet}){
+@media (max-width: ${breakpoints.tablet}){
     padding: 0;
 
 `
@@ -58,7 +58,7 @@ z-index: 1;
     }
   }
 
-  @media (width <= ${breakpoints.mobile}){
+  @media (max-width: ${breakpoints.mobile}){
     padding: 80px 0;
   }
 `
@@ -74,11 +74,11 @@ const Mailout = styled.div`
     overflow: hidden;
     margin-top: 50px;
 
-    @media (width <= ${breakpoints.smallTablet}){
+    @media (max-width: ${breakpoints.smallTablet}){
         flex-direction: column;
     }
 
-    @media (width <= ${breakpoints.extraSmallMobile}){
+    @media (max-width: ${breakpoints.extraSmallMobile}){
         border-radius: 14px;
     }
 `
@@ -89,7 +89,7 @@ const MailoutImage = styled.div`
         height: 100%;
         object-fit: cover;
 
-        @media (width <= ${breakpoints.smallTablet}){
+        @media (max-width: ${breakpoints.smallTablet}){
             aspect-ratio: 2 / 1;
             object-position: 0% 20%;
             // height: clamp(220px, 47vw, 350px);
@@ -97,7 +97,7 @@ const MailoutImage = styled.div`
 
         }
 
-        @media (width <= ${breakpoints.smallTablet}){
+        @media (max-width: ${breakpoints.smallTablet}){
             width: 100%;
 `
 const MailoutContent = styled.div`
@@ -112,12 +112,12 @@ const MailoutContent = styled.div`
         padding: 2em 2em 0 2em;
     }
 
-    @media (width <= ${breakpoints.smallTablet}){
+    @media (max-width: ${breakpoints.smallTablet}){
         width: 100%;
         padding: 0 2em;
     }
 
-    @media (width <= ${breakpoints.mobile}) {
+    @media (max-width: ${breakpoints.mobile}) {
         padding: 0 1em;
     }
 
@@ -127,11 +127,11 @@ const ContactButton = styled(ButtonElem)`
     width: 23%;
     transition: all .2s linear;
 
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         width: clamp(150px, 44vw, 290px);
     }
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         width: 290px;
         margin: 0 auto;
     }
@@ -148,7 +148,7 @@ const MailoutFormWrapper = styled.div`
     align-items: center;
     gap:.7em;
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         flex-direction: column;
     }
 `
@@ -160,7 +160,7 @@ const Input = styled.input`
     border-radius: 51px;
     font-size: 16px;
 
-    @media (width <= ${breakpoints.smallTablet}){
+    @media (max-width: ${breakpoints.smallTablet}){
         width: clamp(250px, 47vw, 380px);
     }
 
@@ -191,11 +191,11 @@ const SubmitButton = styled.div`
         background-color: oklch(54.36% 0.113 128.95);
     }
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         width: 250px;
     }
 
-    @media (width <= ${breakpoints.extraSmallMobile}){
+    @media (max-width: ${breakpoints.extraSmallMobile}){
         font-size: 14px;
     }
 `
@@ -204,7 +204,7 @@ margin: 1.5em 0;
 font-size: 12px; 
 color: var(--greyText);
 
-@media (width <= ${breakpoints.smallTablet}){
+@media (max-width: ${breakpoints.smallTablet}){
     margin: 1em 0;
 }
 `
@@ -233,8 +233,6 @@ export default function ContactsSection(){
       };
 
     return(
-        <>
-            {/* <ErrorItem open={isModalOpen} onClose={closeModal}/>   */}
             <ContactsContainer>
                 <ContactsInner>
                     <ContactsButtons>
@@ -277,6 +275,5 @@ export default function ContactsSection(){
                     </Mailout>
                 </ContactsInner>
             </ContactsContainer>
-        </>
     )
 }

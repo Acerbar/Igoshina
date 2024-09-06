@@ -17,11 +17,11 @@ const SpecializationInner = styled(Container)`
         padding: 0;
     }
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (width <= ${breakpoints.smallMobile}){
+    @media (max-width: ${breakpoints.smallMobile}){
         grid-template-columns: 1fr;
     }
 `

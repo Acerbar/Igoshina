@@ -9,15 +9,15 @@ width: 100%;
 gap: 2em;
 padding: 50px 20px;
 
-@media (width <= ${breakpoints.tablet}){
+@media (max-width: ${breakpoints.tablet}){
     padding:40px 0;
 }
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     flex-direction: column;
     padding: 30px 0;
 }
-@media (width <= ${breakpoints.smallMobile}){
+@media (max-width: ${breakpoints.smallMobile}){
     padding: 15px 0;
 }
 `
@@ -30,7 +30,7 @@ const ContainerItem = styled.div`
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 
-    @media (width <= 1080px){
+    @media (max-width: 1080px){
         width: 100%;
     }
 `

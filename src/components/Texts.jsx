@@ -11,13 +11,13 @@ const H1 = styled.h1`
     text-align: start;
     text-wrap: balance;
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         font-size: clamp(28px, 6.25vw, 54px);
     }
-    @media (width <= ${breakpoints.mobile}){
+    @media (max-width: ${breakpoints.mobile}){
         margin-left: -4px;
     }
-    @media (width <= ${breakpoints.extraSmallMobile}){
+    @media (max-width: ${breakpoints.extraSmallMobile}){
         margin-left: -2px;
     }
 `
@@ -28,7 +28,7 @@ const H2 = styled.h2`
     line-height: 1.45em;
     color: var(--mainGreen);
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         font-size: clamp(16px, 4.5vw, 20px)
     }
 `
@@ -40,7 +40,7 @@ const H3 = styled.h3`
     color: var(--blackText);
     margin: 20px 0;
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         font-size: clamp(22px, 4.5vw, 36px);
     }
 `
@@ -52,7 +52,7 @@ const H4 = styled.h4`
     color: var(--blackText);
 
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         font-size: clamp(18px, 3.2vw, 24px);
     }
 
@@ -80,7 +80,7 @@ const P = styled.p`
     line-height: 1.5em;
     color: var(--blackText);
 
-    @media (width <= ${breakpoints.tablet}){
+    @media (max-width: ${breakpoints.tablet}){
         font-size: clamp(14px, 2.1vw, 16px)
     }
 `

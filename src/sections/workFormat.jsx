@@ -10,7 +10,7 @@ const WorkFormatWrapper = styled(Container)`
 width: min(95%, 1240px);
 padding: 50px 0;
 
-@media (width <= ${breakpoints.tablet}){
+@media (max-width: ${breakpoints.tablet}){
   width: 100%;
 }
 `

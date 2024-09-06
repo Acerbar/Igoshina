@@ -8,7 +8,7 @@ const WorkParagraph = styled(Paragraph)`
   width: 100%;
   color: var(--secondaryText);
   
-  @media (width <= ${breakpoints.mobile}){
+  @media (max-width: ${breakpoints.mobile}){
     line-height: 1.3em;
 }
   

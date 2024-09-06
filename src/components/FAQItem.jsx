@@ -18,7 +18,7 @@ gap: 3em;
 padding: 1em 1em 1em 0;
 cursor: pointer;
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
         padding-right: 0;
     }
 `
@@ -27,7 +27,7 @@ white-space: pre-line;
 padding: 0 0 2em 1em;
 width: 78%;
 
-@media (width <= ${breakpoints.mobile}){
+@media (max-width: ${breakpoints.mobile}){
     width: 85%;
 }
 `
