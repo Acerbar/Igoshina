@@ -12,7 +12,7 @@ const Header = styled.header`
     left: 0;
     z-index: 10;
     width: 100%;
-    padding: 10px 0;
+    padding: 10px 40px;
     border-bottom: ${({ $fixed }) => ($fixed ? '1px solid var(--borderGrey)' : '')};
     background-color: ${({ $fixed }) => ($fixed ? 'var(--backgroundColor)' : '')};
 
@@ -21,6 +21,9 @@ const Header = styled.header`
     }
     @media (max-width: ${breakpoints.mobile}){
         padding: 15px 20px;
+    }
+    @media (max-width: ${breakpoints.smallMobile}){
+        padding: 15px;
     }
 `;
 

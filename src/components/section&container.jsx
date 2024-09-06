@@ -7,7 +7,7 @@ flex-direction: row;
 justify-content: space-between;
 width: 100%;
 gap: 2em;
-padding: 50px 20px;
+padding: 50px 0;
 
 @media (max-width: ${breakpoints.tablet}){
     padding:40px 0;
