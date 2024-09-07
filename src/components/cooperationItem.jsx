@@ -143,7 +143,7 @@ export default function CooperationItem({ title, subtitle, text, price, prepay, 
                 </ContentInnerText>
                 <ContentInnerPrice>
                     <TitleH4>{price}</TitleH4>
-                    <CooperationParagraph style={{ color: "var(--greyText)" }}>{prepay}</CooperationParagraph>
+                    {/* <CooperationParagraph style={{ color: "var(--greyText)" }}>{prepay}</CooperationParagraph> */}
                 </ContentInnerPrice>
             </CoopItemContent>
             <CooperationButton
